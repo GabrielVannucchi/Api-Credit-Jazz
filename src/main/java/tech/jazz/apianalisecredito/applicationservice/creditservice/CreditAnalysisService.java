@@ -31,6 +31,7 @@ public class CreditAnalysisService {
     private final ClientApi clientApi;
     private final BigDecimal maxIncome = BigDecimal.valueOf(50000.00);
     private final String UUIDRegex = "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$";
+    private final String CPFRegex = "(\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}|\\d{11})";
     private final Integer annualInterest = 15;
     private final float highRequestPercent = 15.0f;
     private final float lowRequestPercent = 30.0f;
@@ -97,7 +98,6 @@ public class CreditAnalysisService {
     }
 
     public List<ClientAnalysisResponse> listAnalysisByClient(String param) {
-        String CPFRegex = "(\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}|\\d{11})";
 
         if(Pattern.matches(CPFRegex, param)){
             try {
@@ -108,11 +108,12 @@ public class CreditAnalysisService {
             }
         }else if(!Pattern.matches(UUIDRegex, param)){
             throw new ClientParamOutOfFormatException();
-        }
-        try {
-            ClientApiRequest client = clientApi.getClientById(param);
-        } catch (Exception e) {
-            throw new ClientNotFoundException();
+        }else{
+            try {
+                ClientApiRequest client = clientApi.getClientById(param);
+            } catch (Exception e) {
+                throw new ClientNotFoundException();
+            }
         }
         List<CreditAnalysisEntity> listEntity  = repository.findByClientId(param);
         List<ClientAnalysisResponse> listResponse = new ArrayList<>();

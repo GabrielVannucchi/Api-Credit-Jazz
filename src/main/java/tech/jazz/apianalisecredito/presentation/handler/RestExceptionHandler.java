@@ -49,8 +49,8 @@ public class RestExceptionHandler {
                 );
     }
 
-    @ExceptionHandler(RequestClientIdOutOfFormatException.class)
-    public ResponseEntity<ProblemDetail> requestClientIdOutOfFormatExceptionHandler(RequestClientIdOutOfFormatException e){
+    @ExceptionHandler(ClientIdOutOfFormatException.class)
+    public ResponseEntity<ProblemDetail> requestClientIdOutOfFormatExceptionHandler(ClientIdOutOfFormatException e){
         ProblemDetail problemDetail = problemDetailBuilder(
                 HttpStatus.BAD_REQUEST, e.getClass().getSimpleName(),
                 "Id out of pattern. Insert correct UUID of pattern XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX", e);
@@ -58,8 +58,8 @@ public class RestExceptionHandler {
                 .body(problemDetail
                 );
     }
-    @ExceptionHandler(RequestMonthlyIncomeInvalidException.class)
-    public ResponseEntity<ProblemDetail> requestMonthlyIncomeInvalidExceptionHandler(RequestMonthlyIncomeInvalidException e){
+    @ExceptionHandler(MonthlyIncomeInvalidException.class)
+    public ResponseEntity<ProblemDetail> requestMonthlyIncomeInvalidExceptionHandler(MonthlyIncomeInvalidException e){
         ProblemDetail problemDetail = problemDetailBuilder(
                 HttpStatus.BAD_REQUEST, e.getClass().getSimpleName(),
                 "Insert value greater than 0 for monthly income", e);
@@ -67,8 +67,8 @@ public class RestExceptionHandler {
                 .body(problemDetail
                 );
     }
-    @ExceptionHandler(RequestRequestAmountInvalidException.class)
-    public ResponseEntity<ProblemDetail> requestRequestAmountInvalidExceptionHandler(RequestRequestAmountInvalidException e){
+    @ExceptionHandler(RequestedAmountInvalidException.class)
+    public ResponseEntity<ProblemDetail> requestRequestAmountInvalidExceptionHandler(RequestedAmountInvalidException e){
         ProblemDetail problemDetail = problemDetailBuilder(
                 HttpStatus.BAD_GATEWAY, e.getClass().getSimpleName(),
                 "Insert value greater than 0 for requested amount", e);
