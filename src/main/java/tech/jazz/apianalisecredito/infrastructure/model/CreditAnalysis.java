@@ -11,12 +11,12 @@ public record CreditAnalysis(
         BigDecimal approvedLimit,
         BigDecimal requestedAmount,
         BigDecimal withdraw,
-        Integer annualInterest,
+        Float annualInterest,
         UUID clientId,
         LocalDateTime date
 ) {
     @Builder
-    public CreditAnalysis(Boolean approved, BigDecimal approvedLimit, BigDecimal requestedAmount, BigDecimal withdraw, Integer annualInterest, UUID clientId, LocalDateTime date) {
+    public CreditAnalysis(Boolean approved, BigDecimal approvedLimit, BigDecimal requestedAmount, BigDecimal withdraw, Float annualInterest, UUID clientId, LocalDateTime date) {
         this.approved = approved;
         this.approvedLimit = approvedLimit;
         this.requestedAmount = requestedAmount;

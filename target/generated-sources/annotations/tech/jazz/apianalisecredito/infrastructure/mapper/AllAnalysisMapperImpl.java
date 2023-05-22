@@ -10,7 +10,7 @@ import tech.jazz.apianalisecredito.presentation.dto.response.AllAnalysisResponse
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-05-22T11:06:32-0300",
+    date = "2023-05-22T14:57:08-0300",
     comments = "version: 1.5.3.Final, compiler: javac, environment: Java 17.0.7 (Amazon.com Inc.)"
 )
 @Component
@@ -27,7 +27,7 @@ public class AllAnalysisMapperImpl implements AllAnalysisMapper {
         BigDecimal approvedLimit = null;
         BigDecimal requestedAmount = null;
         BigDecimal withdraw = null;
-        Integer annualInterest = null;
+        Float annualInterest = null;
         String clientId = null;
         LocalDateTime date = null;
 

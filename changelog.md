@@ -1,3 +1,13 @@
+:22-05-2023
+@toDo
+validar para receber apenas duas casas decimais ou ignorar da terceira para cima
+adicionar o jacoco
+
+@changelog:
+criados testes unitarios para a classe Service e a dto Request
+alterado extensão do arquivo changelog.txt para changelog.md
+annualInteres altearada de Integer para Float
+
 :19-05-2023
 @toDo
 validar para receber apenas duas casas decimais ou ignorar da terceira para cima
