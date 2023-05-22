@@ -1,0 +1,9 @@
+services:
+  postgres:
+    image: postgres
+    container_name: postgrescredit
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: senha123
+    ports:
+      - "5432:5432"
