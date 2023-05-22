@@ -14,6 +14,8 @@ mensagens de erro traduzidas para o ingles
 adicionada excessão para consulta por Id de cliente para caso não conste na base
 atributo clientId na model CreditAnalysis transformado em UUID
 
+
+
 :18-05-2023
 @toDo
 aplicar código de resposta HTTP para todos os endpoints
