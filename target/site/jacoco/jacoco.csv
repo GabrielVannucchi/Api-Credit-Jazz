@@ -4,7 +4,7 @@ api-analise-credito,tech.jazz.apianalisecredito.infrastructure.repository.entity
 api-analise-credito,tech.jazz.apianalisecredito.presentation.handler.exceptions,CreditAnalysisNotFoundException,0,3,0,0,0,1,0,1,0,1
 api-analise-credito,tech.jazz.apianalisecredito.presentation.handler.exceptions,ClientIdOutOfFormatException,0,3,0,0,0,1,0,1,0,1
 api-analise-credito,tech.jazz.apianalisecredito.presentation.handler.exceptions,RequestedAmountInvalidException,0,3,0,0,0,1,0,1,0,1
-api-analise-credito,tech.jazz.apianalisecredito.presentation.handler.exceptions,ClientNotFoundException,3,0,0,0,1,0,1,0,1,0
+api-analise-credito,tech.jazz.apianalisecredito.presentation.handler.exceptions,ClientNotFoundException,0,3,0,0,0,1,0,1,0,1
 api-analise-credito,tech.jazz.apianalisecredito.presentation.handler.exceptions,MonthlyIncomeInvalidException,0,3,0,0,0,1,0,1,0,1
 api-analise-credito,tech.jazz.apianalisecredito.presentation.handler.exceptions,ClientParamOutOfFormatException,0,3,0,0,0,1,0,1,0,1
 api-analise-credito,tech.jazz.apianalisecredito.presentation.handler.exceptions,UuidOutOfFormatException,0,3,0,0,0,1,0,1,0,1
@@ -17,7 +17,7 @@ api-analise-credito,tech.jazz.apianalisecredito.infrastructure.mapper,AllAnalysi
 api-analise-credito,tech.jazz.apianalisecredito.infrastructure.mapper,CreditAnalysisMapperImpl,4,105,3,3,2,31,3,3,0,3
 api-analise-credito,tech.jazz.apianalisecredito.presentation.dto.response,AllAnalysisResponse,0,27,0,0,0,1,0,1,0,1
 api-analise-credito,tech.jazz.apianalisecredito.presentation.dto.response,ClientAnalysisResponse,0,27,0,0,0,1,0,1,0,1
-api-analise-credito,tech.jazz.apianalisecredito.applicationservice.creditservice,CreditAnalysisService,15,259,0,16,6,59,0,14,0,6
+api-analise-credito,tech.jazz.apianalisecredito.applicationservice.creditservice,CreditAnalysisService,0,274,0,16,0,65,0,14,0,6
 api-analise-credito,tech.jazz.apianalisecredito.presentation.handler,RestExceptionHandler,122,3,0,0,33,1,8,1,8,1
 api-analise-credito,tech.jazz.apianalisecredito,ApiAnaliseCreditoApplication,5,3,0,0,2,1,1,1,1,1
 api-analise-credito,tech.jazz.apianalisecredito.presentation.controller,CreditController,19,6,0,0,4,1,4,1,4,1

@@ -1,3 +1,12 @@
+:24-05-2023
+@toDo
+configurar o docker
+
+@changelog:
+adicionado checkstyle e jacoco.
+fixes apontaados pelo checkstyle
+adicionado novos testes não mapeados anteriormente
+
 :23-05-2023
 @toDo
 configurar o docker

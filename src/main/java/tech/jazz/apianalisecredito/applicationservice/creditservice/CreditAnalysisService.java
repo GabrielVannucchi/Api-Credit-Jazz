@@ -32,8 +32,8 @@ public class CreditAnalysisService {
     private final CreditAnalysisMapper creditAnalysisMapper;
     private final AllAnalysisMapper allAnalysisMapper;
     private final ClientApi clientApi;
-    private final String UUIDRegex = "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$";
-    private final String CPFRegex = "(\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}|\\d{11})";
+    private final String uuidRegex = "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$";
+    private final String cpfregex = "(\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}|\\d{11})";
     private final BigDecimal maxIncome = BigDecimal.valueOf(50000.00);
     private final float annualInterest = 15.0f;
     private final float highRequestPercent = 15.0f;
@@ -103,14 +103,14 @@ public class CreditAnalysisService {
 
     public List<ClientAnalysisResponse> listAnalysisByClient(String param) {
 
-        if (Pattern.matches(CPFRegex, param)) {
+        if (Pattern.matches(cpfregex, param)) {
             try {
                 final ClientApiRequest client = clientApi.getClientByCpf(param);
                 param = client.id();
             } catch (RetryableException e) {
                 throw new ClientNotFoundException();
             }
-        } else if (!Pattern.matches(UUIDRegex, param)) {
+        } else if (!Pattern.matches(uuidRegex, param)) {
             throw new ClientParamOutOfFormatException();
         } else {
             try {
@@ -129,7 +129,7 @@ public class CreditAnalysisService {
     }
 
     public ClientAnalysisResponse findAnalysisById(String id) {
-        if (!Pattern.matches(UUIDRegex, id)) {
+        if (!Pattern.matches(uuidRegex, id)) {
             throw new UuidOutOfFormatException();
         }
         final Optional<CreditAnalysisEntity> optionalEntity = repository.findFirstById(UUID.fromString(id));

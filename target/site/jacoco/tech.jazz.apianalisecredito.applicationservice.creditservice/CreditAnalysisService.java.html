@@ -32,8 +32,8 @@ public class CreditAnalysisService {
     private final CreditAnalysisMapper creditAnalysisMapper;
     private final AllAnalysisMapper allAnalysisMapper;
     private final ClientApi clientApi;
-<span class="fc" id="L35">    private final String UUIDRegex = &quot;^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$&quot;;</span>
-<span class="fc" id="L36">    private final String CPFRegex = &quot;(\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}|\\d{11})&quot;;</span>
+<span class="fc" id="L35">    private final String uuidRegex = &quot;^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$&quot;;</span>
+<span class="fc" id="L36">    private final String cpfregex = &quot;(\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}|\\d{11})&quot;;</span>
 <span class="fc" id="L37">    private final BigDecimal maxIncome = BigDecimal.valueOf(50000.00);</span>
 <span class="fc" id="L38">    private final float annualInterest = 15.0f;</span>
 <span class="fc" id="L39">    private final float highRequestPercent = 15.0f;</span>
@@ -51,8 +51,8 @@ public class CreditAnalysisService {
         //api client
         try {
 <span class="fc" id="L53">            clientApi.getClientById(request.clientId());</span>
-<span class="nc" id="L54">        } catch (RetryableException e) {</span>
-<span class="nc" id="L55">            throw new ClientNotFoundException();</span>
+<span class="fc" id="L54">        } catch (RetryableException e) {</span>
+<span class="fc" id="L55">            throw new ClientNotFoundException();</span>
 <span class="fc" id="L56">        }</span>
         //end api client
         //regras de negocio
@@ -103,20 +103,20 @@ public class CreditAnalysisService {
 
     public List&lt;ClientAnalysisResponse&gt; listAnalysisByClient(String param) {
 
-<span class="fc bfc" id="L106" title="All 2 branches covered.">        if (Pattern.matches(CPFRegex, param)) {</span>
+<span class="fc bfc" id="L106" title="All 2 branches covered.">        if (Pattern.matches(cpfregex, param)) {</span>
             try {
 <span class="fc" id="L108">                final ClientApiRequest client = clientApi.getClientByCpf(param);</span>
 <span class="fc" id="L109">                param = client.id();</span>
-<span class="nc" id="L110">            } catch (RetryableException e) {</span>
-<span class="nc" id="L111">                throw new ClientNotFoundException();</span>
+<span class="fc" id="L110">            } catch (RetryableException e) {</span>
+<span class="fc" id="L111">                throw new ClientNotFoundException();</span>
 <span class="fc" id="L112">            }</span>
-<span class="fc bfc" id="L113" title="All 2 branches covered.">        } else if (!Pattern.matches(UUIDRegex, param)) {</span>
+<span class="fc bfc" id="L113" title="All 2 branches covered.">        } else if (!Pattern.matches(uuidRegex, param)) {</span>
 <span class="fc" id="L114">            throw new ClientParamOutOfFormatException();</span>
         } else {
             try {
 <span class="fc" id="L117">                final ClientApiRequest client = clientApi.getClientById(param);</span>
-<span class="nc" id="L118">            } catch (RetryableException e) {</span>
-<span class="nc" id="L119">                throw new ClientNotFoundException();</span>
+<span class="fc" id="L118">            } catch (RetryableException e) {</span>
+<span class="fc" id="L119">                throw new ClientNotFoundException();</span>
 <span class="fc" id="L120">            }</span>
         }
 <span class="fc" id="L122">        final List&lt;CreditAnalysisEntity&gt; listEntity = repository.findByClientId(param);</span>
@@ -129,7 +129,7 @@ public class CreditAnalysisService {
     }
 
     public ClientAnalysisResponse findAnalysisById(String id) {
-<span class="fc bfc" id="L132" title="All 2 branches covered.">        if (!Pattern.matches(UUIDRegex, id)) {</span>
+<span class="fc bfc" id="L132" title="All 2 branches covered.">        if (!Pattern.matches(uuidRegex, id)) {</span>
 <span class="fc" id="L133">            throw new UuidOutOfFormatException();</span>
         }
 <span class="fc" id="L135">        final Optional&lt;CreditAnalysisEntity&gt; optionalEntity = repository.findFirstById(UUID.fromString(id));</span>
