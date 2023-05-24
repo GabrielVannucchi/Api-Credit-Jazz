@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: tech.jazz.apianalisecredito.applicationservice.creditservice.CreditAnalysisServiceTest
+-------------------------------------------------------------------------------
+Tests run: 16, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.225 s - in tech.jazz.apianalisecredito.applicationservice.creditservice.CreditAnalysisServiceTest

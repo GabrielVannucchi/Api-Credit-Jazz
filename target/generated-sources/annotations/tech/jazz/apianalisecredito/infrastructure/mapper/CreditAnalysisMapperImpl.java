@@ -11,8 +11,8 @@ import tech.jazz.apianalisecredito.presentation.dto.response.ClientAnalysisRespo
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-05-22T14:57:08-0300",
-    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 17.0.7 (Amazon.com Inc.)"
+    date = "2023-05-24T14:44:09-0300",
+    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 17 (Oracle Corporation)"
 )
 @Component
 public class CreditAnalysisMapperImpl implements CreditAnalysisMapper {

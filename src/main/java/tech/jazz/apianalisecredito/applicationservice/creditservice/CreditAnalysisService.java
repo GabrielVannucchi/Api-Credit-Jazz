@@ -1,5 +1,14 @@
 package tech.jazz.apianalisecredito.applicationservice.creditservice;
 
+import feign.RetryableException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+import java.util.regex.Pattern;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import tech.jazz.apianalisecredito.applicationservice.dto.ClientApiRequest;
@@ -11,16 +20,10 @@ import tech.jazz.apianalisecredito.infrastructure.repository.entity.CreditAnalys
 import tech.jazz.apianalisecredito.presentation.dto.request.CreditAnalysisRequest;
 import tech.jazz.apianalisecredito.presentation.dto.response.AllAnalysisResponse;
 import tech.jazz.apianalisecredito.presentation.dto.response.ClientAnalysisResponse;
-import tech.jazz.apianalisecredito.presentation.handler.exceptions.*;
-
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
-import java.util.regex.Pattern;
+import tech.jazz.apianalisecredito.presentation.handler.exceptions.ClientNotFoundException;
+import tech.jazz.apianalisecredito.presentation.handler.exceptions.ClientParamOutOfFormatException;
+import tech.jazz.apianalisecredito.presentation.handler.exceptions.CreditAnalysisNotFoundException;
+import tech.jazz.apianalisecredito.presentation.handler.exceptions.UuidOutOfFormatException;
 
 @Service
 @RequiredArgsConstructor
@@ -36,18 +39,19 @@ public class CreditAnalysisService {
     private final float highRequestPercent = 15.0f;
     private final float lowRequestPercent = 30.0f;
     private final float withdrawPercent = 10.0f;
+
     public ClientAnalysisResponse createAnalysis(CreditAnalysisRequest request) {
         //value config
         BigDecimal incomeValue = request.monthlyIncome();
         BigDecimal withdraw = new BigDecimal(0);
         BigDecimal approvedLimit = new BigDecimal(0);
-        boolean approved;
+        final boolean approved;
 
         //end value config
         //api client
         try {
             clientApi.getClientById(request.clientId());
-        } catch (Exception e) {
+        } catch (RetryableException e) {
             throw new ClientNotFoundException();
         }
         //end api client
@@ -72,7 +76,7 @@ public class CreditAnalysisService {
 
         //end regras de negocio
 
-        CreditAnalysis creditAnalysis = CreditAnalysis.builder()
+        final CreditAnalysis creditAnalysis = CreditAnalysis.builder()
                 .approved(approved)
                 .approvedLimit(approvedLimit)
                 .requestedAmount(request.requestedAmount())
@@ -82,13 +86,13 @@ public class CreditAnalysisService {
                 .date(LocalDateTime.now())
                 .build();
 
-        CreditAnalysisEntity entity = creditAnalysisMapper.from(creditAnalysis);
+        final CreditAnalysisEntity entity = creditAnalysisMapper.from(creditAnalysis);
         return creditAnalysisMapper.from(repository.save(entity));
     }
 
     public List<AllAnalysisResponse> listAllCreditAnalysis() {
-        List<CreditAnalysisEntity> listEntity = repository.findAll();
-        List<AllAnalysisResponse> listResponse = new ArrayList<>();
+        final List<CreditAnalysisEntity> listEntity = repository.findAll();
+        final List<AllAnalysisResponse> listResponse = new ArrayList<>();
         for (CreditAnalysisEntity entity :
                 listEntity) {
             listResponse.add(allAnalysisMapper.from(entity));
@@ -99,24 +103,24 @@ public class CreditAnalysisService {
 
     public List<ClientAnalysisResponse> listAnalysisByClient(String param) {
 
-        if(Pattern.matches(CPFRegex, param)){
+        if (Pattern.matches(CPFRegex, param)) {
             try {
-                ClientApiRequest client = clientApi.getClientByCpf(param);
+                final ClientApiRequest client = clientApi.getClientByCpf(param);
                 param = client.id();
-            } catch (Exception e) {
+            } catch (RetryableException e) {
                 throw new ClientNotFoundException();
             }
-        }else if(!Pattern.matches(UUIDRegex, param)){
+        } else if (!Pattern.matches(UUIDRegex, param)) {
             throw new ClientParamOutOfFormatException();
-        }else{
+        } else {
             try {
-                ClientApiRequest client = clientApi.getClientById(param);
-            } catch (Exception e) {
+                final ClientApiRequest client = clientApi.getClientById(param);
+            } catch (RetryableException e) {
                 throw new ClientNotFoundException();
             }
         }
-        List<CreditAnalysisEntity> listEntity  = repository.findByClientId(param);
-        List<ClientAnalysisResponse> listResponse = new ArrayList<>();
+        final List<CreditAnalysisEntity> listEntity = repository.findByClientId(param);
+        final List<ClientAnalysisResponse> listResponse = new ArrayList<>();
         for (CreditAnalysisEntity entity :
                 listEntity) {
             listResponse.add(creditAnalysisMapper.from(entity));
@@ -125,11 +129,11 @@ public class CreditAnalysisService {
     }
 
     public ClientAnalysisResponse findAnalysisById(String id) {
-        if(!Pattern.matches(UUIDRegex, id)){
+        if (!Pattern.matches(UUIDRegex, id)) {
             throw new UuidOutOfFormatException();
         }
-        Optional<CreditAnalysisEntity> optionalEntity= repository.findFirstById(UUID.fromString(id));
-        CreditAnalysisEntity entity = optionalEntity.orElseThrow(() -> new CreditAnalysisNotFoundException());
+        final Optional<CreditAnalysisEntity> optionalEntity = repository.findFirstById(UUID.fromString(id));
+        final CreditAnalysisEntity entity = optionalEntity.orElseThrow(() -> new CreditAnalysisNotFoundException());
 
         return creditAnalysisMapper.from(entity);
     }

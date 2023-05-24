@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import tech.jazz.apianalisecredito.applicationservice.dto.ClientApiRequest;
 
-@FeignClient(name = "ClientApi", url="localhost:8080/clients/")
+@FeignClient(name = "ClientApi", url = "localhost:8080/clients/")
 public interface ClientApi {
     @GetMapping("{id}")
     ClientApiRequest getClientById(@PathVariable String id);

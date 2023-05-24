@@ -36,4 +36,22 @@ class CreditAnalysisRequestTest {
                 .requestedAmount(new BigDecimal(-50000))
                 .build());
     }
+
+    @Test
+    void should_throw_MonthlyIncomeInvalidException_when_requestedAmount_have_incorrect_scale(){
+        assertThrows(MonthlyIncomeInvalidException.class,() -> CreditAnalysisRequest.builder()
+                .clientId("690cfa4d-2228-4343-85db-82e96e122da9")
+                .monthlyIncome(new BigDecimal(20000.0001))
+                .requestedAmount(new BigDecimal(5000))
+                .build());
+    }
+
+    @Test
+    void should_throw_RequestedAmountInvalidException_when_requestedAmount_have_incorrect_scale(){
+        assertThrows(RequestedAmountInvalidException.class,() -> CreditAnalysisRequest.builder()
+                .clientId("690cfa4d-2228-4343-85db-82e96e122da9")
+                .monthlyIncome(new BigDecimal(20000))
+                .requestedAmount(new BigDecimal(5000.005))
+                .build());
+    }
 }

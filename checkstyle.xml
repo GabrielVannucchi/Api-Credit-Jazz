@@ -8,17 +8,15 @@
 
     <property name="severity" value="error"/>
 
-    <property name="fileExtensions" value="java, properties, xml, yml"/>,
+    <property name="fileExtensions" value="java, properties, xml, yml"/>
     <!-- See https://checkstyle.org/config_filefilters.html -->
     <module name="BeforeExecutionExclusionFileFilter">
         <property name="fileNamePattern" value="module\-info\.java$"/>
     </module>
     <!-- Checks for whitespace                               -->
     <!-- See http://checkstyle.sf.net/config_whitespace.html -->
-    <module name="FileTabCharacter">
-        <property name="eachLine" value="true"/>
-    </module>
-    <module name="NewlineAtEndOfFile"/>
+
+
     <module name="LineLength">
         <property name="fileExtensions" value="java"/>
         <property name="max" value="150"/>
@@ -120,11 +118,6 @@
             <message key="name.invalidPattern"
                      value="Type name ''{0}'' must match pattern ''{1}''."/>
         </module>
-        <module name="MemberName">
-            <property name="format" value="^[a-z][a-z0-9][a-zA-Z0-9]*$"/>
-            <message key="name.invalidPattern"
-                     value="Member name ''{0}'' must match pattern ''{1}''."/>
-        </module>
         <module name="ParameterName">
             <property name="format" value="^[a-z]([a-z0-9][a-zA-Z0-9]*)?$"/>
             <message key="name.invalidPattern"
@@ -203,8 +196,7 @@
                     LT, MINUS, MOD, NOT_EQUAL, PLUS, QUESTION, SL, SR, STAR, METHOD_REF "/>
         </module>
         <module name="AnnotationLocation">
-            <property name="id" value="Annotati
-            onLocationMostCases"/>
+            <property name="id" value="AnnotationLocationMostCases"/>
             <property name="tokens"
                       value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, CTOR_DEF"/>
         </module>
@@ -238,13 +230,7 @@
             <property name="exceptionVariableName" value="expected"/>
         </module>
         <module name="CommentsIndentation"/>
-        <module name="MagicNumber">
-            <property name="ignoreNumbers" value="0, 0.5, 1"/>
-            <property name="ignoreFieldDeclaration" value="true"/>
-            <property name="ignoreAnnotation" value="true"/>
-            <property name="constantWaiverParentToken"
-                      value="TYPECAST, METHOD_CALL, EXPR, ARRAY_INIT, UNARY_MINUS, UNARY_PLUS, ELIST, STAR, ASSIGN, PLUS, MINUS, DIV, LITERAL_NEW, DOT"/>
-        </module>
+
         <module name="ConstantName"/>
         <module name="CyclomaticComplexity">
             <property name="max" value="10"/>
@@ -282,6 +268,7 @@
         <module name="UnusedImports"/>
 
     </module>
+
 
     <!-- Allow turning checks off in the code using @SuppressWarnings annotation -->
     <!-- See http://checkstyle.sourceforge.net/config_filters.html#SuppressWarningsFilter -->

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="349e196f-2f48-44e6-8216-8235e90ae9bf" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/checkstyleidea-libs/readme.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-analise-credito.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkstyle2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-compose2.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/changelog.md" beforeDir="false" afterPath="$PROJECT_DIR$/changelog.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/checkstyle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/checkstyle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/ApiAnaliseCreditoApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/ApiAnaliseCreditoApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/applicationservice/creditservice/ClientApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/applicationservice/creditservice/ClientApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/applicationservice/creditservice/CreditAnalysisService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/applicationservice/creditservice/CreditAnalysisService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/infrastructure/mapper/CreditAnalysisMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/infrastructure/mapper/CreditAnalysisMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/infrastructure/model/CreditAnalysis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/infrastructure/model/CreditAnalysis.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/infrastructure/repository/CreditAnalysisRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/infrastructure/repository/CreditAnalysisRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/infrastructure/repository/entity/CreditAnalysisEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/infrastructure/repository/entity/CreditAnalysisEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/presentation/controller/CreditController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/presentation/controller/CreditController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/presentation/dto/request/CreditAnalysisRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/presentation/dto/request/CreditAnalysisRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/presentation/handler/RestExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/presentation/handler/RestExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tech/jazz/apianalisecredito/applicationservice/creditservice/CreditAnalysisServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tech/jazz/apianalisecredito/applicationservice/creditservice/CreditAnalysisServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tech/jazz/apianalisecredito/presentation/dto/request/CreditAnalysisRequestTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tech/jazz/apianalisecredito/presentation/dto/request/CreditAnalysisRequestTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tech/jazz/apianalisecredito/ApiAnaliseCreditoApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tech/jazz/apianalisecredito/applicationservice/creditservice/ClientApi.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tech/jazz/apianalisecredito/applicationservice/creditservice/CreditAnalysisService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tech/jazz/apianalisecredito/applicationservice/dto/ClientApiRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tech/jazz/apianalisecredito/infrastructure/mapper/AllAnalysisMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tech/jazz/apianalisecredito/infrastructure/mapper/AllAnalysisMapperImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tech/jazz/apianalisecredito/infrastructure/mapper/CreditAnalysisMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tech/jazz/apianalisecredito/infrastructure/mapper/CreditAnalysisMapperImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tech/jazz/apianalisecredito/infrastructure/model/CreditAnalysis$CreditAnalysisBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tech/jazz/apianalisecredito/infrastructure/model/CreditAnalysis.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tech/jazz/apianalisecredito/infrastructure/repository/CreditAnalysisRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tech/jazz/apianalisecredito/infrastructure/repository/entity/CreditAnalysisEntity$CreditAnalysisEntityBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tech/jazz/apianalisecredito/infrastructure/repository/entity/CreditAnalysisEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tech/jazz/apianalisecredito/presentation/controller/CreditController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tech/jazz/apianalisecredito/presentation/dto/request/CreditAnalysisRequest$CreditAnalysisRequestBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tech/jazz/apianalisecredito/presentation/dto/request/CreditAnalysisRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tech/jazz/apianalisecredito/presentation/dto/response/AllAnalysisResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tech/jazz/apianalisecredito/presentation/dto/response/ClientAnalysisResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tech/jazz/apianalisecredito/presentation/handler/RestExceptionHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tech/jazz/apianalisecredito/presentation/handler/exceptions/ClientIdOutOfFormatException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tech/jazz/apianalisecredito/presentation/handler/exceptions/ClientNotFoundException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tech/jazz/apianalisecredito/presentation/handler/exceptions/ClientParamOutOfFormatException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tech/jazz/apianalisecredito/presentation/handler/exceptions/CreditAnalysisNotFoundException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tech/jazz/apianalisecredito/presentation/handler/exceptions/MonthlyIncomeInvalidException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tech/jazz/apianalisecredito/presentation/handler/exceptions/RequestedAmountInvalidException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tech/jazz/apianalisecredito/presentation/handler/exceptions/UuidOutOfFormatException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/tech/jazz/apianalisecredito/infrastructure/mapper/AllAnalysisMapperImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/tech/jazz/apianalisecredito/infrastructure/mapper/CreditAnalysisMapperImpl.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="isToolWindowVisible" value="false" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2QFFOjOcH4WfAHKuIj7BHbu9BYE" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "C:/Users/gabriel.correa/Documents/GabrielVannucchi/Nova pasta/Api-Credit-Jazz/checkstyle.xml",
+    "settings.editor.selected.configurable": "preferences.sourceCode"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\gabriel.correa\Documents\GabrielVannucchi\Nova pasta\Api-Credit-Jazz" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.ApiAnaliseCreditoApplication">
+    <configuration name="ApiAnaliseCreditoApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="tech.jazz.apianalisecredito.ApiAnaliseCreditoApplication" />
+      <module name="api-analise-credito" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tech.jazz.apianalisecredito.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ApiAnaliseCreditoApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="api-analise-credito" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tech.jazz.apianalisecredito.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tech.jazz.apianalisecredito" />
+      <option name="MAIN_CLASS_NAME" value="tech.jazz.apianalisecredito.ApiAnaliseCreditoApplicationTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CreditAnalysisRequestTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="api-analise-credito" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tech.jazz.apianalisecredito.presentation.dto.request.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tech.jazz.apianalisecredito.presentation.dto.request" />
+      <option name="MAIN_CLASS_NAME" value="tech.jazz.apianalisecredito.presentation.dto.request.CreditAnalysisRequestTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CreditAnalysisServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="api-analise-credito" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tech.jazz.apianalisecredito.applicationservice.creditservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tech.jazz.apianalisecredito.applicationservice.creditservice" />
+      <option name="MAIN_CLASS_NAME" value="tech.jazz.apianalisecredito.applicationservice.creditservice.CreditAnalysisServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.ApiAnaliseCreditoApplication" />
+        <item itemvalue="JUnit.CreditAnalysisRequestTest" />
+        <item itemvalue="JUnit.ApiAnaliseCreditoApplicationTests" />
+        <item itemvalue="JUnit.CreditAnalysisServiceTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="349e196f-2f48-44e6-8216-8235e90ae9bf" name="Changes" comment="" />
+      <created>1684941392789</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1684941392789</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="feign.RetryableException" memberName="suppressedExceptions" />
+      </pinned-members>
+    </pin-to-top-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

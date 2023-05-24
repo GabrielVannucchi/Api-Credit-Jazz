@@ -1,3 +1,11 @@
+:23-05-2023
+@toDo
+configurar o docker
+adicionar o jacoco
+
+@changelog:
+escala dos valores validada para entrada de uma nova analise de crédito
+
 :22-05-2023
 @toDo
 validar para receber apenas duas casas decimais ou ignorar da terceira para cima

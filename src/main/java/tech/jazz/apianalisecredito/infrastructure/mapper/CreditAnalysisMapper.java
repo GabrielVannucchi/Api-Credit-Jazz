@@ -8,7 +8,9 @@ import tech.jazz.apianalisecredito.presentation.dto.response.ClientAnalysisRespo
 
 @Mapper(componentModel = "spring")
 public interface CreditAnalysisMapper {
+
     CreditAnalysisEntity from(CreditAnalysis creditAnalysis);
+
     ClientAnalysisResponse from(CreditAnalysisEntity creditAnalysisEntity);
 
 }

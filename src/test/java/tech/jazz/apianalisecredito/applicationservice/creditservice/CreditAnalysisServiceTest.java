@@ -226,7 +226,7 @@ class CreditAnalysisServiceTest {
                 .approvedLimit(new BigDecimal(20))
                 .requestedAmount(new BigDecimal(20))
                 .withdraw(new BigDecimal(20))
-                .annualInterest(15)
+                .annualInterest(15f)
                 .clientId("12341234-1234-1234-1234-123412341234")
                 .date(LocalDateTime.of(1997,4,10,4,20))
                 .build();
@@ -255,5 +255,4 @@ class CreditAnalysisServiceTest {
                     }
                 });
     }
-
 }
