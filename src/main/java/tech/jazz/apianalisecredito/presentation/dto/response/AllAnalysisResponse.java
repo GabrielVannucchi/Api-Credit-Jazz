@@ -10,7 +10,7 @@ public record AllAnalysisResponse(
         BigDecimal approvedLimit,
         BigDecimal requestedAmount,
         BigDecimal withdraw,
-        Integer annualInterest,
+        Float annualInterest,
         String clientId,
         LocalDateTime date
 ){

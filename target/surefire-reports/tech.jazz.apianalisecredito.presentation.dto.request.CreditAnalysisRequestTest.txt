@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: tech.jazz.apianalisecredito.presentation.dto.request.CreditAnalysisRequestTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s - in tech.jazz.apianalisecredito.presentation.dto.request.CreditAnalysisRequestTest

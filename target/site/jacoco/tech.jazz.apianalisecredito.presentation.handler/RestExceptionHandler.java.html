@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RestExceptionHandler.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">api-analise-credito</a> &gt; <a href="index.source.html" class="el_package">tech.jazz.apianalisecredito.presentation.handler</a> &gt; <span class="el_source">RestExceptionHandler.java</span></div><h1>RestExceptionHandler.java</h1><pre class="source lang-java linenums">package tech.jazz.apianalisecredito.presentation.handler;
+
+import java.net.URI;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ProblemDetail;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+import tech.jazz.apianalisecredito.presentation.handler.exceptions.ClientApiUnavailableException;
+import tech.jazz.apianalisecredito.presentation.handler.exceptions.ClientIdOutOfFormatException;
+import tech.jazz.apianalisecredito.presentation.handler.exceptions.ClientNotFoundException;
+import tech.jazz.apianalisecredito.presentation.handler.exceptions.ClientParamOutOfFormatException;
+import tech.jazz.apianalisecredito.presentation.handler.exceptions.CreditAnalysisNotFoundException;
+import tech.jazz.apianalisecredito.presentation.handler.exceptions.MonthlyIncomeInvalidException;
+import tech.jazz.apianalisecredito.presentation.handler.exceptions.RequestedAmountInvalidException;
+import tech.jazz.apianalisecredito.presentation.handler.exceptions.UuidOutOfFormatException;
+
+@RestControllerAdvice
+<span class="nc" id="L19">public class RestExceptionHandler {</span>
+    private ProblemDetail problemDetailBuilder(HttpStatus status, String title, String message, Exception e) {
+<span class="nc" id="L21">        final ProblemDetail problemDetail = ProblemDetail.forStatus(status);</span>
+<span class="nc" id="L22">        problemDetail.setType(URI.create(&quot;https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status/&quot; + status.value()));</span>
+<span class="nc" id="L23">        problemDetail.setTitle(title);</span>
+<span class="nc" id="L24">        problemDetail.setDetail(message);</span>
+<span class="nc" id="L25">        return problemDetail;</span>
+    }
+
+    @ExceptionHandler(ClientNotFoundException.class)
+    public ResponseEntity&lt;ProblemDetail&gt; clientNotFoundExceptionHandler(ClientNotFoundException e) {
+<span class="nc" id="L30">        final ProblemDetail problemDetail = problemDetailBuilder(</span>
+<span class="nc" id="L31">                HttpStatus.NOT_FOUND, e.getClass().getSimpleName(),</span>
+<span class="nc" id="L32">                e.getMessage(), e);</span>
+<span class="nc" id="L33">        return ResponseEntity.status(problemDetail.getStatus())</span>
+<span class="nc" id="L34">                .body(problemDetail</span>
+                );
+    }
+
+    @ExceptionHandler(ClientApiUnavailableException.class)
+    public ResponseEntity&lt;ProblemDetail&gt; clientApiUnavailableExceptionHandler(ClientApiUnavailableException e) {
+<span class="nc" id="L40">        final ProblemDetail problemDetail = problemDetailBuilder(</span>
+<span class="nc" id="L41">                HttpStatus.SERVICE_UNAVAILABLE, e.getClass().getSimpleName(),</span>
+<span class="nc" id="L42">                e.getMessage(), e);</span>
+<span class="nc" id="L43">        return ResponseEntity.status(problemDetail.getStatus())</span>
+<span class="nc" id="L44">                .body(problemDetail</span>
+                );
+    }
+
+    @ExceptionHandler(ClientParamOutOfFormatException.class)
+    public ResponseEntity&lt;ProblemDetail&gt; clientParamOutOfFormatExceptionHandler(ClientParamOutOfFormatException e) {
+<span class="nc" id="L50">        final ProblemDetail problemDetail = problemDetailBuilder(</span>
+<span class="nc" id="L51">                HttpStatus.BAD_REQUEST, e.getClass().getSimpleName(),</span>
+<span class="nc" id="L52">                e.getMessage(), e);</span>
+<span class="nc" id="L53">        return ResponseEntity.status(problemDetail.getStatus())</span>
+<span class="nc" id="L54">                .body(problemDetail</span>
+                );
+    }
+
+    @ExceptionHandler(UuidOutOfFormatException.class)
+    public ResponseEntity&lt;ProblemDetail&gt; uuidOutOfFormatExceptionHandler(UuidOutOfFormatException e) {
+<span class="nc" id="L60">        final ProblemDetail problemDetail = problemDetailBuilder(</span>
+<span class="nc" id="L61">                HttpStatus.BAD_REQUEST, e.getClass().getSimpleName(),</span>
+<span class="nc" id="L62">                e.getMessage(), e);</span>
+<span class="nc" id="L63">        return ResponseEntity.status(problemDetail.getStatus())</span>
+<span class="nc" id="L64">                .body(problemDetail</span>
+                );
+    }
+
+    @ExceptionHandler(ClientIdOutOfFormatException.class)
+    public ResponseEntity&lt;ProblemDetail&gt; requestClientIdOutOfFormatExceptionHandler(ClientIdOutOfFormatException e) {
+<span class="nc" id="L70">        final ProblemDetail problemDetail = problemDetailBuilder(</span>
+<span class="nc" id="L71">                HttpStatus.BAD_REQUEST, e.getClass().getSimpleName(),</span>
+<span class="nc" id="L72">                e.getMessage(), e);</span>
+<span class="nc" id="L73">        return ResponseEntity.status(problemDetail.getStatus())</span>
+<span class="nc" id="L74">                .body(problemDetail</span>
+                );
+    }
+
+    @ExceptionHandler(MonthlyIncomeInvalidException.class)
+    public ResponseEntity&lt;ProblemDetail&gt; requestMonthlyIncomeInvalidExceptionHandler(MonthlyIncomeInvalidException e) {
+<span class="nc" id="L80">        final ProblemDetail problemDetail = problemDetailBuilder(</span>
+<span class="nc" id="L81">                HttpStatus.BAD_REQUEST, e.getClass().getSimpleName(),</span>
+<span class="nc" id="L82">                e.getMessage(), e);</span>
+<span class="nc" id="L83">        return ResponseEntity.status(problemDetail.getStatus())</span>
+<span class="nc" id="L84">                .body(problemDetail</span>
+                );
+    }
+
+    @ExceptionHandler(RequestedAmountInvalidException.class)
+    public ResponseEntity&lt;ProblemDetail&gt; requestRequestAmountInvalidExceptionHandler(RequestedAmountInvalidException e) {
+<span class="nc" id="L90">        final ProblemDetail problemDetail = problemDetailBuilder(</span>
+<span class="nc" id="L91">                HttpStatus.BAD_GATEWAY, e.getClass().getSimpleName(),</span>
+<span class="nc" id="L92">                e.getMessage(), e);</span>
+<span class="nc" id="L93">        return ResponseEntity.status(problemDetail.getStatus())</span>
+<span class="nc" id="L94">                .body(problemDetail</span>
+                );
+    }
+
+    @ExceptionHandler(CreditAnalysisNotFoundException.class)
+    public ResponseEntity&lt;ProblemDetail&gt; creditAnalysisNotFoundExceptionHandler(CreditAnalysisNotFoundException e) {
+<span class="nc" id="L100">        final ProblemDetail problemDetail = problemDetailBuilder(</span>
+<span class="nc" id="L101">                HttpStatus.NOT_FOUND, e.getClass().getSimpleName(),</span>
+<span class="nc" id="L102">                e.getMessage(), e);</span>
+<span class="nc" id="L103">        return ResponseEntity.status(problemDetail.getStatus())</span>
+<span class="nc" id="L104">                .body(problemDetail</span>
+                );
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

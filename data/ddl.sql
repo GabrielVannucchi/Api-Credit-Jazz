@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS CREDIT_ANALYSIS(
         approved_limit decimal(7,2),
         requested_amount decimal(10,2),
         withdraw decimal(7,2),
-        annual_interest integer,
+        annual_interest decimal(6,3),
         client_id varchar(36),
         local_date timestamp,
         created_at timestamp,
