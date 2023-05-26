@@ -6,6 +6,7 @@ import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import tech.jazz.apianalisecredito.presentation.handler.exceptions.ClientApiUnavailableException;
 import tech.jazz.apianalisecredito.presentation.handler.exceptions.ClientIdOutOfFormatException;
 import tech.jazz.apianalisecredito.presentation.handler.exceptions.ClientNotFoundException;
 import tech.jazz.apianalisecredito.presentation.handler.exceptions.ClientParamOutOfFormatException;
@@ -15,82 +16,92 @@ import tech.jazz.apianalisecredito.presentation.handler.exceptions.RequestedAmou
 import tech.jazz.apianalisecredito.presentation.handler.exceptions.UuidOutOfFormatException;
 
 @RestControllerAdvice
-<span class="fc" id="L18">public class RestExceptionHandler {</span>
+<span class="nc" id="L19">public class RestExceptionHandler {</span>
     private ProblemDetail problemDetailBuilder(HttpStatus status, String title, String message, Exception e) {
-<span class="nc" id="L20">        final ProblemDetail problemDetail = ProblemDetail.forStatus(status);</span>
-<span class="nc" id="L21">        problemDetail.setType(URI.create(&quot;https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status/&quot; + status.value()));</span>
-<span class="nc" id="L22">        problemDetail.setTitle(title);</span>
-<span class="nc" id="L23">        problemDetail.setDetail(message);</span>
-<span class="nc" id="L24">        return problemDetail;</span>
+<span class="nc" id="L21">        final ProblemDetail problemDetail = ProblemDetail.forStatus(status);</span>
+<span class="nc" id="L22">        problemDetail.setType(URI.create(&quot;https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status/&quot; + status.value()));</span>
+<span class="nc" id="L23">        problemDetail.setTitle(title);</span>
+<span class="nc" id="L24">        problemDetail.setDetail(message);</span>
+<span class="nc" id="L25">        return problemDetail;</span>
     }
 
     @ExceptionHandler(ClientNotFoundException.class)
     public ResponseEntity&lt;ProblemDetail&gt; clientNotFoundExceptionHandler(ClientNotFoundException e) {
-<span class="nc" id="L29">        final ProblemDetail problemDetail = problemDetailBuilder(</span>
-<span class="nc" id="L30">                HttpStatus.NOT_FOUND, e.getClass().getSimpleName(),</span>
-                &quot;Client not found in ClientApi&quot;, e);
-<span class="nc" id="L32">        return ResponseEntity.status(problemDetail.getStatus())</span>
-<span class="nc" id="L33">                .body(problemDetail</span>
+<span class="nc" id="L30">        final ProblemDetail problemDetail = problemDetailBuilder(</span>
+<span class="nc" id="L31">                HttpStatus.NOT_FOUND, e.getClass().getSimpleName(),</span>
+<span class="nc" id="L32">                e.getMessage(), e);</span>
+<span class="nc" id="L33">        return ResponseEntity.status(problemDetail.getStatus())</span>
+<span class="nc" id="L34">                .body(problemDetail</span>
+                );
+    }
+
+    @ExceptionHandler(ClientApiUnavailableException.class)
+    public ResponseEntity&lt;ProblemDetail&gt; clientApiUnavailableExceptionHandler(ClientApiUnavailableException e) {
+<span class="nc" id="L40">        final ProblemDetail problemDetail = problemDetailBuilder(</span>
+<span class="nc" id="L41">                HttpStatus.SERVICE_UNAVAILABLE, e.getClass().getSimpleName(),</span>
+<span class="nc" id="L42">                e.getMessage(), e);</span>
+<span class="nc" id="L43">        return ResponseEntity.status(problemDetail.getStatus())</span>
+<span class="nc" id="L44">                .body(problemDetail</span>
                 );
     }
 
     @ExceptionHandler(ClientParamOutOfFormatException.class)
     public ResponseEntity&lt;ProblemDetail&gt; clientParamOutOfFormatExceptionHandler(ClientParamOutOfFormatException e) {
-<span class="nc" id="L39">        final ProblemDetail problemDetail = problemDetailBuilder(</span>
-<span class="nc" id="L40">                HttpStatus.BAD_REQUEST, e.getClass().getSimpleName(),</span>
-                &quot;Parameter out of pattern. Insert a CPF or a UUID of pattern XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX&quot;, e);
-<span class="nc" id="L42">        return ResponseEntity.status(problemDetail.getStatus())</span>
-<span class="nc" id="L43">                .body(problemDetail</span>
+<span class="nc" id="L50">        final ProblemDetail problemDetail = problemDetailBuilder(</span>
+<span class="nc" id="L51">                HttpStatus.BAD_REQUEST, e.getClass().getSimpleName(),</span>
+<span class="nc" id="L52">                e.getMessage(), e);</span>
+<span class="nc" id="L53">        return ResponseEntity.status(problemDetail.getStatus())</span>
+<span class="nc" id="L54">                .body(problemDetail</span>
                 );
     }
 
     @ExceptionHandler(UuidOutOfFormatException.class)
     public ResponseEntity&lt;ProblemDetail&gt; uuidOutOfFormatExceptionHandler(UuidOutOfFormatException e) {
-<span class="nc" id="L49">        final ProblemDetail problemDetail = problemDetailBuilder(</span>
-<span class="nc" id="L50">                HttpStatus.BAD_REQUEST, e.getClass().getSimpleName(),</span>
-                &quot;Id out of pattern. Insert correct UUID of pattern XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX&quot;, e);
-<span class="nc" id="L52">        return ResponseEntity.status(problemDetail.getStatus())</span>
-<span class="nc" id="L53">                .body(problemDetail</span>
+<span class="nc" id="L60">        final ProblemDetail problemDetail = problemDetailBuilder(</span>
+<span class="nc" id="L61">                HttpStatus.BAD_REQUEST, e.getClass().getSimpleName(),</span>
+<span class="nc" id="L62">                e.getMessage(), e);</span>
+<span class="nc" id="L63">        return ResponseEntity.status(problemDetail.getStatus())</span>
+<span class="nc" id="L64">                .body(problemDetail</span>
                 );
     }
 
     @ExceptionHandler(ClientIdOutOfFormatException.class)
     public ResponseEntity&lt;ProblemDetail&gt; requestClientIdOutOfFormatExceptionHandler(ClientIdOutOfFormatException e) {
-<span class="nc" id="L59">        final ProblemDetail problemDetail = problemDetailBuilder(</span>
-<span class="nc" id="L60">                HttpStatus.BAD_REQUEST, e.getClass().getSimpleName(),</span>
-                &quot;Id out of pattern. Insert correct UUID of pattern XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX&quot;, e);
-<span class="nc" id="L62">        return ResponseEntity.status(problemDetail.getStatus())</span>
-<span class="nc" id="L63">                .body(problemDetail</span>
+<span class="nc" id="L70">        final ProblemDetail problemDetail = problemDetailBuilder(</span>
+<span class="nc" id="L71">                HttpStatus.BAD_REQUEST, e.getClass().getSimpleName(),</span>
+<span class="nc" id="L72">                e.getMessage(), e);</span>
+<span class="nc" id="L73">        return ResponseEntity.status(problemDetail.getStatus())</span>
+<span class="nc" id="L74">                .body(problemDetail</span>
                 );
     }
 
     @ExceptionHandler(MonthlyIncomeInvalidException.class)
     public ResponseEntity&lt;ProblemDetail&gt; requestMonthlyIncomeInvalidExceptionHandler(MonthlyIncomeInvalidException e) {
-<span class="nc" id="L69">        final ProblemDetail problemDetail = problemDetailBuilder(</span>
-<span class="nc" id="L70">                HttpStatus.BAD_REQUEST, e.getClass().getSimpleName(),</span>
-                &quot;Insert value greater than 0 and a scale greater than 2 for monthly income&quot;, e);
-<span class="nc" id="L72">        return ResponseEntity.status(problemDetail.getStatus())</span>
-<span class="nc" id="L73">                .body(problemDetail</span>
+<span class="nc" id="L80">        final ProblemDetail problemDetail = problemDetailBuilder(</span>
+<span class="nc" id="L81">                HttpStatus.BAD_REQUEST, e.getClass().getSimpleName(),</span>
+<span class="nc" id="L82">                e.getMessage(), e);</span>
+<span class="nc" id="L83">        return ResponseEntity.status(problemDetail.getStatus())</span>
+<span class="nc" id="L84">                .body(problemDetail</span>
                 );
     }
 
     @ExceptionHandler(RequestedAmountInvalidException.class)
     public ResponseEntity&lt;ProblemDetail&gt; requestRequestAmountInvalidExceptionHandler(RequestedAmountInvalidException e) {
-<span class="nc" id="L79">        final ProblemDetail problemDetail = problemDetailBuilder(</span>
-<span class="nc" id="L80">                HttpStatus.BAD_GATEWAY, e.getClass().getSimpleName(),</span>
-                &quot;Insert value greater than 0 and a scale greater than 2 for requested amount&quot;, e);
-<span class="nc" id="L82">        return ResponseEntity.status(problemDetail.getStatus())</span>
-<span class="nc" id="L83">                .body(problemDetail</span>
+<span class="nc" id="L90">        final ProblemDetail problemDetail = problemDetailBuilder(</span>
+<span class="nc" id="L91">                HttpStatus.BAD_GATEWAY, e.getClass().getSimpleName(),</span>
+<span class="nc" id="L92">                e.getMessage(), e);</span>
+<span class="nc" id="L93">        return ResponseEntity.status(problemDetail.getStatus())</span>
+<span class="nc" id="L94">                .body(problemDetail</span>
                 );
     }
 
     @ExceptionHandler(CreditAnalysisNotFoundException.class)
     public ResponseEntity&lt;ProblemDetail&gt; creditAnalysisNotFoundExceptionHandler(CreditAnalysisNotFoundException e) {
-<span class="nc" id="L89">        final ProblemDetail problemDetail = problemDetailBuilder(</span>
-<span class="nc" id="L90">                HttpStatus.NOT_FOUND, e.getClass().getSimpleName(),</span>
-                &quot;Credit analysis not found with this id&quot;, e);
-<span class="nc" id="L92">        return ResponseEntity.status(problemDetail.getStatus())</span>
-<span class="nc" id="L93">                .body(problemDetail</span>
+<span class="nc" id="L100">        final ProblemDetail problemDetail = problemDetailBuilder(</span>
+<span class="nc" id="L101">                HttpStatus.NOT_FOUND, e.getClass().getSimpleName(),</span>
+<span class="nc" id="L102">                e.getMessage(), e);</span>
+<span class="nc" id="L103">        return ResponseEntity.status(problemDetail.getStatus())</span>
+<span class="nc" id="L104">                .body(problemDetail</span>
                 );
     }
 }

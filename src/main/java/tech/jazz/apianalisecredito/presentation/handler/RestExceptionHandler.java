@@ -6,6 +6,7 @@ import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import tech.jazz.apianalisecredito.presentation.handler.exceptions.ClientApiUnavailableException;
 import tech.jazz.apianalisecredito.presentation.handler.exceptions.ClientIdOutOfFormatException;
 import tech.jazz.apianalisecredito.presentation.handler.exceptions.ClientNotFoundException;
 import tech.jazz.apianalisecredito.presentation.handler.exceptions.ClientParamOutOfFormatException;
@@ -28,7 +29,17 @@ public class RestExceptionHandler {
     public ResponseEntity<ProblemDetail> clientNotFoundExceptionHandler(ClientNotFoundException e) {
         final ProblemDetail problemDetail = problemDetailBuilder(
                 HttpStatus.NOT_FOUND, e.getClass().getSimpleName(),
-                "Client not found in ClientApi", e);
+                e.getMessage(), e);
+        return ResponseEntity.status(problemDetail.getStatus())
+                .body(problemDetail
+                );
+    }
+
+    @ExceptionHandler(ClientApiUnavailableException.class)
+    public ResponseEntity<ProblemDetail> clientApiUnavailableExceptionHandler(ClientApiUnavailableException e) {
+        final ProblemDetail problemDetail = problemDetailBuilder(
+                HttpStatus.SERVICE_UNAVAILABLE, e.getClass().getSimpleName(),
+                e.getMessage(), e);
         return ResponseEntity.status(problemDetail.getStatus())
                 .body(problemDetail
                 );
@@ -38,7 +49,7 @@ public class RestExceptionHandler {
     public ResponseEntity<ProblemDetail> clientParamOutOfFormatExceptionHandler(ClientParamOutOfFormatException e) {
         final ProblemDetail problemDetail = problemDetailBuilder(
                 HttpStatus.BAD_REQUEST, e.getClass().getSimpleName(),
-                "Parameter out of pattern. Insert a CPF or a UUID of pattern XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX", e);
+                e.getMessage(), e);
         return ResponseEntity.status(problemDetail.getStatus())
                 .body(problemDetail
                 );
@@ -48,7 +59,7 @@ public class RestExceptionHandler {
     public ResponseEntity<ProblemDetail> uuidOutOfFormatExceptionHandler(UuidOutOfFormatException e) {
         final ProblemDetail problemDetail = problemDetailBuilder(
                 HttpStatus.BAD_REQUEST, e.getClass().getSimpleName(),
-                "Id out of pattern. Insert correct UUID of pattern XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX", e);
+                e.getMessage(), e);
         return ResponseEntity.status(problemDetail.getStatus())
                 .body(problemDetail
                 );
@@ -58,7 +69,7 @@ public class RestExceptionHandler {
     public ResponseEntity<ProblemDetail> requestClientIdOutOfFormatExceptionHandler(ClientIdOutOfFormatException e) {
         final ProblemDetail problemDetail = problemDetailBuilder(
                 HttpStatus.BAD_REQUEST, e.getClass().getSimpleName(),
-                "Id out of pattern. Insert correct UUID of pattern XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX", e);
+                e.getMessage(), e);
         return ResponseEntity.status(problemDetail.getStatus())
                 .body(problemDetail
                 );
@@ -68,7 +79,7 @@ public class RestExceptionHandler {
     public ResponseEntity<ProblemDetail> requestMonthlyIncomeInvalidExceptionHandler(MonthlyIncomeInvalidException e) {
         final ProblemDetail problemDetail = problemDetailBuilder(
                 HttpStatus.BAD_REQUEST, e.getClass().getSimpleName(),
-                "Insert value greater than 0 and a scale greater than 2 for monthly income", e);
+                e.getMessage(), e);
         return ResponseEntity.status(problemDetail.getStatus())
                 .body(problemDetail
                 );
@@ -78,7 +89,7 @@ public class RestExceptionHandler {
     public ResponseEntity<ProblemDetail> requestRequestAmountInvalidExceptionHandler(RequestedAmountInvalidException e) {
         final ProblemDetail problemDetail = problemDetailBuilder(
                 HttpStatus.BAD_GATEWAY, e.getClass().getSimpleName(),
-                "Insert value greater than 0 and a scale greater than 2 for requested amount", e);
+                e.getMessage(), e);
         return ResponseEntity.status(problemDetail.getStatus())
                 .body(problemDetail
                 );
@@ -88,7 +99,7 @@ public class RestExceptionHandler {
     public ResponseEntity<ProblemDetail> creditAnalysisNotFoundExceptionHandler(CreditAnalysisNotFoundException e) {
         final ProblemDetail problemDetail = problemDetailBuilder(
                 HttpStatus.NOT_FOUND, e.getClass().getSimpleName(),
-                "Credit analysis not found with this id", e);
+                e.getMessage(), e);
         return ResponseEntity.status(problemDetail.getStatus())
                 .body(problemDetail
                 );

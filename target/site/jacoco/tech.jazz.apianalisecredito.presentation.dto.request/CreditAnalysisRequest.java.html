@@ -17,15 +17,15 @@ public record CreditAnalysisRequest(
 <span class="fc" id="L17">                                 BigDecimal requestedAmount) {</span>
 <span class="fc" id="L18">        final int scale = 2;</span>
 <span class="fc bfc" id="L19" title="All 2 branches covered.">        if (!clientId.matches(&quot;^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$&quot;)) {</span>
-<span class="fc" id="L20">            throw new ClientIdOutOfFormatException();</span>
+<span class="fc" id="L20">            throw new ClientIdOutOfFormatException(&quot;Id out of pattern. Insert correct UUID of pattern XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX&quot;);</span>
         }
 
 <span class="fc bfc" id="L23" title="All 4 branches covered.">        if (monthlyIncome.compareTo(BigDecimal.valueOf(0)) &lt; 0 || monthlyIncome.scale() &gt; scale) {</span>
-<span class="fc" id="L24">            throw new MonthlyIncomeInvalidException();</span>
+<span class="fc" id="L24">            throw new MonthlyIncomeInvalidException(&quot;Insert value greater than 0 and a scale greater than 2 for monthly income&quot;);</span>
         }
 
 <span class="fc bfc" id="L27" title="All 4 branches covered.">        if (requestedAmount.compareTo(BigDecimal.valueOf(0)) &lt; 0 || requestedAmount.scale() &gt; scale) {</span>
-<span class="fc" id="L28">            throw new RequestedAmountInvalidException();</span>
+<span class="fc" id="L28">            throw new RequestedAmountInvalidException(&quot;Insert value greater than 0 and a scale greater than 2 for requested amount&quot;);</span>
         }
 <span class="fc" id="L30">        this.clientId = clientId;</span>
 <span class="fc" id="L31">        this.monthlyIncome = monthlyIncome;</span>

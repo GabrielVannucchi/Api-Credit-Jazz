@@ -5,14 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="349e196f-2f48-44e6-8216-8235e90ae9bf" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/presentation/handler/exceptions/ClientApiUnavailableException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-analise-credito.iml" beforeDir="false" afterPath="$PROJECT_DIR$/api-analise-credito.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/changelog.md" beforeDir="false" afterPath="$PROJECT_DIR$/changelog.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/checkstyle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/checkstyle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/checkstyle2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/checkstyle2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/api_analise_credito_jar/api-analise-credito.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/ApiAnaliseCreditoApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/ApiAnaliseCreditoApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/applicationservice/creditservice/CreditAnalysisService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/applicationservice/creditservice/CreditAnalysisService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/presentation/controller/CreditController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/presentation/controller/CreditController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/presentation/dto/request/CreditAnalysisRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/presentation/dto/request/CreditAnalysisRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/presentation/handler/RestExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/presentation/handler/RestExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/presentation/handler/exceptions/ClientIdOutOfFormatException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/presentation/handler/exceptions/ClientIdOutOfFormatException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/presentation/handler/exceptions/ClientNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/presentation/handler/exceptions/ClientNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/presentation/handler/exceptions/ClientParamOutOfFormatException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/presentation/handler/exceptions/ClientParamOutOfFormatException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/presentation/handler/exceptions/CreditAnalysisNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/presentation/handler/exceptions/CreditAnalysisNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/presentation/handler/exceptions/MonthlyIncomeInvalidException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/presentation/handler/exceptions/MonthlyIncomeInvalidException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/presentation/handler/exceptions/RequestedAmountInvalidException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/presentation/handler/exceptions/RequestedAmountInvalidException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/presentation/handler/exceptions/UuidOutOfFormatException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/presentation/handler/exceptions/UuidOutOfFormatException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tech/jazz/apianalisecredito/ApiAnaliseCreditoApplicationTests.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/tech/jazz/apianalisecredito/applicationservice/creditservice/CreditAnalysisServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tech/jazz/apianalisecredito/applicationservice/creditservice/CreditAnalysisServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/api-analise-credito-0.0.1-SNAPSHOT.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/api-analise-credito-0.0.1-SNAPSHOT.jar.original" beforeDir="false" />
@@ -157,6 +166,13 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -178,21 +194,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/gabriel.correa/Documents/GabrielVannucchi/Nova pasta/Api-Credit-Jazz/checkstyle.xml",
-    "settings.editor.selected.configurable": "preferences.sourceCode"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/gabriel.correa/Documents/GabrielVannucchi/Nova pasta/Api-Credit-Jazz/checkstyle.xml&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\gabriel.correa\Documents\GabrielVannucchi\Nova pasta\Api-Credit-Jazz" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CreditAnalysisServiceTest.should_create_unapproved_analysis">
+  <component name="RunManager" selected="JUnit.CreditAnalysisServiceTest.should_throw_ClientApiUnavailableException_when_apiClientDown">
     <configuration name="ApiAnaliseCreditoApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="tech.jazz.apianalisecredito.ApiAnaliseCreditoApplication" />
       <module name="api-analise-credito" />
@@ -202,6 +218,21 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CreditAnalysisRequestTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="api-analise-credito" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tech.jazz.apianalisecredito.presentation.dto.request.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tech.jazz.apianalisecredito.presentation.dto.request" />
+      <option name="MAIN_CLASS_NAME" value="tech.jazz.apianalisecredito.presentation.dto.request.CreditAnalysisRequestTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -221,7 +252,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CreditAnalysisServiceTest.should_create_unapproved_analysis" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CreditAnalysisServiceTest.should_throw_ClientApiUnavailableException_when_apiClientDown" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="api-analise-credito" />
       <extension name="coverage">
         <pattern>
@@ -231,40 +262,22 @@
       </extension>
       <option name="PACKAGE_NAME" value="tech.jazz.apianalisecredito.applicationservice.creditservice" />
       <option name="MAIN_CLASS_NAME" value="tech.jazz.apianalisecredito.applicationservice.creditservice.CreditAnalysisServiceTest" />
-      <option name="METHOD_NAME" value="should_create_unapproved_analysis" />
+      <option name="METHOD_NAME" value="should_throw_ClientApiUnavailableException_when_apiClientDown" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CreditAnalysisServiceTest.should_throw_CliendNotFoundException_when_cpf_not_found_while_searching" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="tech.jazz.apianalisecredito in api-analise-credito" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="api-analise-credito" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="tech.jazz.apianalisecredito.applicationservice.creditservice.*" />
+          <option name="PATTERN" value="tech.jazz.apianalisecredito.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="tech.jazz.apianalisecredito.applicationservice.creditservice" />
-      <option name="MAIN_CLASS_NAME" value="tech.jazz.apianalisecredito.applicationservice.creditservice.CreditAnalysisServiceTest" />
-      <option name="METHOD_NAME" value="should_throw_CliendNotFoundException_when_cpf_not_found_while_searching" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CreditAnalysisServiceTest.should_throw_CliendNotFoundException_when_id_not_found_while_searching" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="api-analise-credito" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="tech.jazz.apianalisecredito.applicationservice.creditservice.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="tech.jazz.apianalisecredito.applicationservice.creditservice" />
-      <option name="MAIN_CLASS_NAME" value="tech.jazz.apianalisecredito.applicationservice.creditservice.CreditAnalysisServiceTest" />
-      <option name="METHOD_NAME" value="should_throw_CliendNotFoundException_when_id_not_found_while_searching" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="tech.jazz.apianalisecredito" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -282,11 +295,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.CreditAnalysisServiceTest.should_create_unapproved_analysis" />
-        <item itemvalue="JUnit.CreditAnalysisServiceTest" />
-        <item itemvalue="JUnit.CreditAnalysisServiceTest.should_throw_CliendNotFoundException_when_cpf_not_found_while_searching" />
-        <item itemvalue="JUnit.CreditAnalysisServiceTest.should_throw_CliendNotFoundException_when_id_not_found_while_searching" />
+        <item itemvalue="JUnit.CreditAnalysisServiceTest.should_throw_ClientApiUnavailableException_when_apiClientDown" />
         <item itemvalue="Application.ApiAnaliseCreditoApplication" />
+        <item itemvalue="JUnit.CreditAnalysisRequestTest" />
+        <item itemvalue="JUnit.CreditAnalysisServiceTest" />
+        <item itemvalue="JUnit.tech.jazz.apianalisecredito in api-analise-credito" />
       </list>
     </recent_temporary>
   </component>

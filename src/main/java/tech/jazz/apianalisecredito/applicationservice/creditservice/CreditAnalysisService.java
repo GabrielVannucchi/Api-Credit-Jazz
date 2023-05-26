@@ -1,5 +1,6 @@
 package tech.jazz.apianalisecredito.applicationservice.creditservice;
 
+import feign.FeignException;
 import feign.RetryableException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -20,10 +21,12 @@ import tech.jazz.apianalisecredito.infrastructure.repository.entity.CreditAnalys
 import tech.jazz.apianalisecredito.presentation.dto.request.CreditAnalysisRequest;
 import tech.jazz.apianalisecredito.presentation.dto.response.AllAnalysisResponse;
 import tech.jazz.apianalisecredito.presentation.dto.response.ClientAnalysisResponse;
+import tech.jazz.apianalisecredito.presentation.handler.exceptions.ClientApiUnavailableException;
 import tech.jazz.apianalisecredito.presentation.handler.exceptions.ClientNotFoundException;
 import tech.jazz.apianalisecredito.presentation.handler.exceptions.ClientParamOutOfFormatException;
 import tech.jazz.apianalisecredito.presentation.handler.exceptions.CreditAnalysisNotFoundException;
 import tech.jazz.apianalisecredito.presentation.handler.exceptions.UuidOutOfFormatException;
+
 
 @Service
 @RequiredArgsConstructor
@@ -39,6 +42,8 @@ public class CreditAnalysisService {
     private final float highRequestPercent = 15.0f;
     private final float lowRequestPercent = 30.0f;
     private final float withdrawPercent = 10.0f;
+    private final String clientNotFoundMessage = "Client not found in ClientApi";
+    private final String clientApiUnavailableMessage = "Client API unavailable";
 
     public ClientAnalysisResponse createAnalysis(CreditAnalysisRequest request) {
         //value config
@@ -52,7 +57,9 @@ public class CreditAnalysisService {
         try {
             clientApi.getClientById(request.clientId());
         } catch (RetryableException e) {
-            throw new ClientNotFoundException();
+            throw new ClientApiUnavailableException(clientApiUnavailableMessage);
+        } catch (FeignException e) {
+            throw new ClientNotFoundException(clientNotFoundMessage);
         }
         //end api client
         //regras de negocio
@@ -108,15 +115,20 @@ public class CreditAnalysisService {
                 final ClientApiRequest client = clientApi.getClientByCpf(param);
                 param = client.id();
             } catch (RetryableException e) {
-                throw new ClientNotFoundException();
+                throw new ClientApiUnavailableException(clientApiUnavailableMessage);
+            } catch (FeignException e) {
+                throw new ClientNotFoundException(clientNotFoundMessage);
             }
         } else if (!Pattern.matches(uuidRegex, param)) {
-            throw new ClientParamOutOfFormatException();
+            final String message = "Parameter out of pattern. Insert a CPF or a UUID of pattern XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX";
+            throw new ClientParamOutOfFormatException(message);
         } else {
             try {
                 final ClientApiRequest client = clientApi.getClientById(param);
             } catch (RetryableException e) {
-                throw new ClientNotFoundException();
+                throw new ClientApiUnavailableException(clientApiUnavailableMessage);
+            } catch (FeignException e) {
+                throw new ClientNotFoundException(clientNotFoundMessage);
             }
         }
         final List<CreditAnalysisEntity> listEntity = repository.findByClientId(param);
@@ -130,10 +142,11 @@ public class CreditAnalysisService {
 
     public ClientAnalysisResponse findAnalysisById(String id) {
         if (!Pattern.matches(uuidRegex, id)) {
-            throw new UuidOutOfFormatException();
+            throw new UuidOutOfFormatException("Id out of pattern. Insert correct UUID of pattern XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX");
         }
         final Optional<CreditAnalysisEntity> optionalEntity = repository.findFirstById(UUID.fromString(id));
-        final CreditAnalysisEntity entity = optionalEntity.orElseThrow(() -> new CreditAnalysisNotFoundException());
+        final CreditAnalysisEntity entity = optionalEntity.orElseThrow(
+                () -> new CreditAnalysisNotFoundException(String.format("Credit analysis not found with id %s", id)));
 
         return creditAnalysisMapper.from(entity);
     }

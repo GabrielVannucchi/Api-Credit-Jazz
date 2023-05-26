@@ -11,7 +11,7 @@ import tech.jazz.apianalisecredito.presentation.dto.response.ClientAnalysisRespo
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-05-24T15:29:48-0300",
+    date = "2023-05-25T15:37:30-0300",
     comments = "version: 1.5.3.Final, compiler: javac, environment: Java 17 (Oracle Corporation)"
 )
 @Component

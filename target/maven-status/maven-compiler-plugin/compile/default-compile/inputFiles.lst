@@ -8,6 +8,7 @@ C:\Users\gabriel.correa\Documents\GabrielVannucchi\Nova pasta\Api-Credit-Jazz\sr
 C:\Users\gabriel.correa\Documents\GabrielVannucchi\Nova pasta\Api-Credit-Jazz\src\main\java\tech\jazz\apianalisecredito\presentation\handler\exceptions\MonthlyIncomeInvalidException.java
 C:\Users\gabriel.correa\Documents\GabrielVannucchi\Nova pasta\Api-Credit-Jazz\src\main\java\tech\jazz\apianalisecredito\presentation\handler\exceptions\RequestedAmountInvalidException.java
 C:\Users\gabriel.correa\Documents\GabrielVannucchi\Nova pasta\Api-Credit-Jazz\src\main\java\tech\jazz\apianalisecredito\infrastructure\repository\CreditAnalysisRepository.java
+C:\Users\gabriel.correa\Documents\GabrielVannucchi\Nova pasta\Api-Credit-Jazz\src\main\java\tech\jazz\apianalisecredito\presentation\handler\exceptions\ClientApiUnavailableException.java
 C:\Users\gabriel.correa\Documents\GabrielVannucchi\Nova pasta\Api-Credit-Jazz\src\main\java\tech\jazz\apianalisecredito\presentation\dto\response\AllAnalysisResponse.java
 C:\Users\gabriel.correa\Documents\GabrielVannucchi\Nova pasta\Api-Credit-Jazz\src\main\java\tech\jazz\apianalisecredito\applicationservice\creditservice\ClientApi.java
 C:\Users\gabriel.correa\Documents\GabrielVannucchi\Nova pasta\Api-Credit-Jazz\src\main\java\tech\jazz\apianalisecredito\presentation\controller\CreditController.java

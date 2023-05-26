@@ -17,15 +17,15 @@ public record CreditAnalysisRequest(
                                  BigDecimal requestedAmount) {
         final int scale = 2;
         if (!clientId.matches("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$")) {
-            throw new ClientIdOutOfFormatException();
+            throw new ClientIdOutOfFormatException("Id out of pattern. Insert correct UUID of pattern XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX");
         }
 
         if (monthlyIncome.compareTo(BigDecimal.valueOf(0)) < 0 || monthlyIncome.scale() > scale) {
-            throw new MonthlyIncomeInvalidException();
+            throw new MonthlyIncomeInvalidException("Insert value greater than 0 and a scale greater than 2 for monthly income");
         }
 
         if (requestedAmount.compareTo(BigDecimal.valueOf(0)) < 0 || requestedAmount.scale() > scale) {
-            throw new RequestedAmountInvalidException();
+            throw new RequestedAmountInvalidException("Insert value greater than 0 and a scale greater than 2 for requested amount");
         }
         this.clientId = clientId;
         this.monthlyIncome = monthlyIncome;

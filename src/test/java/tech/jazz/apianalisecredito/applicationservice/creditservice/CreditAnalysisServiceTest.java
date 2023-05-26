@@ -1,5 +1,6 @@
 package tech.jazz.apianalisecredito.applicationservice.creditservice;
 
+import feign.FeignException;
 import feign.RetryableException;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -161,7 +162,7 @@ class CreditAnalysisServiceTest {
     }
     @Test
     void should_throw_CliendNotFoundException_when_id_not_found_while_creating(){
-        Mockito.when(clientApi.getClientById(clientIdCaptor.capture())).thenThrow(RetryableException.class);
+        Mockito.when(clientApi.getClientById(clientIdCaptor.capture())).thenThrow(FeignException.class);
         CreditAnalysisRequest request = CreditAnalysisRequest.builder()
                 .clientId("690cfa4d-2228-4343-85db-82e96e122da9")
                 .monthlyIncome(new BigDecimal(20000))
@@ -172,15 +173,31 @@ class CreditAnalysisServiceTest {
     }
     @Test
     void should_throw_CliendNotFoundException_when_id_not_found_while_searching(){
-        Mockito.when(clientApi.getClientById(clientIdCaptor.capture())).thenThrow(RetryableException.class);
+        Mockito.when(clientApi.getClientById(clientIdCaptor.capture())).thenThrow(FeignException.class);
 
         assertThrows(ClientNotFoundException.class,() -> service.listAnalysisByClient("690cfa4d-2228-4343-85db-82e96e122da9"));
     }
     @Test
     void should_throw_CliendNotFoundException_when_cpf_not_found_while_searching(){
-        Mockito.when(clientApi.getClientByCpf(clientCpfCaptor.capture())).thenThrow(RetryableException.class);
+        Mockito.when(clientApi.getClientByCpf(clientCpfCaptor.capture())).thenThrow(FeignException.class);
         assertThrows(ClientNotFoundException.class,() -> service.listAnalysisByClient("012.345.678-90"));
         assertThrows(ClientNotFoundException.class,() -> service.listAnalysisByClient("45896853882"));
+    }
+    @Test
+    void should_throw_ClientApiUnavailableException_when_apiClientDown(){
+        Mockito.when(clientApi.getClientById(clientIdCaptor.capture())).thenThrow(RetryableException.class);
+        Mockito.when(clientApi.getClientByCpf(clientCpfCaptor.capture())).thenThrow(RetryableException.class);
+
+        CreditAnalysisRequest request = CreditAnalysisRequest.builder()
+                .clientId("690cfa4d-2228-4343-85db-82e96e122da9")
+                .monthlyIncome(new BigDecimal(20000))
+                .requestedAmount(new BigDecimal(50000))
+                .build();
+
+        assertThrows(ClientApiUnavailableException.class,() -> service.listAnalysisByClient("690cfa4d-2228-4343-85db-82e96e122da9"));
+        assertThrows(ClientApiUnavailableException.class,() -> service.listAnalysisByClient("012.345.678-90"));
+        assertThrows(ClientApiUnavailableException.class,() -> service.listAnalysisByClient("45896853882"));
+        assertThrows(ClientApiUnavailableException.class,() -> service.createAnalysis(request));
     }
     @Test
     void should_return_3_analysis_in_findAll(){
@@ -247,7 +264,7 @@ class CreditAnalysisServiceTest {
     private void whenSaveConfiguration(){
         Mockito.when(repository.save(Mockito.any(CreditAnalysisEntity.class)))
                 .thenAnswer(new Answer<CreditAnalysisEntity>() {
-                    public CreditAnalysisEntity answer(InvocationOnMock invocation) throws  Throwable{
+                    public CreditAnalysisEntity answer(InvocationOnMock invocation) throws Throwable{
                         Object[] arguments = invocation.getArguments();
 
                         if (arguments != null && arguments.length > 0 && arguments[0] instanceof CreditAnalysisEntity){

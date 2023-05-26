@@ -1,7 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="9.3">
-<file name="C:\Users\gabriel.correa\Documents\GabrielVannucchi\Nova pasta\Api-Credit-Jazz\src\main\java\tech\jazz\apianalisecredito\ApiAnaliseCreditoApplication.java">
-</file>
-<file name="C:\Users\gabriel.correa\Documents\GabrielVannucchi\Nova pasta\Api-Credit-Jazz\src\main\java\tech\jazz\apianalisecredito\presentation\controller\CreditController.java">
-</file>
 </checkstyle>

@@ -1,3 +1,10 @@
+:25-05-2023
+@toDo
+configurar o docker
+
+@changelog:
+alterado tratamento de excessão com a clientApi
+
 :24-05-2023
 @toDo
 configurar o docker
