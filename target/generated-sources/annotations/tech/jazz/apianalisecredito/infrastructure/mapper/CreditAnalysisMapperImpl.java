@@ -5,13 +5,13 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
-import tech.jazz.apianalisecredito.infrastructure.model.CreditAnalysis;
+import tech.jazz.apianalisecredito.infrastructure.domain.CreditAnalysis;
 import tech.jazz.apianalisecredito.infrastructure.repository.entity.CreditAnalysisEntity;
 import tech.jazz.apianalisecredito.presentation.dto.response.ClientAnalysisResponse;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-05-25T15:37:30-0300",
+    date = "2023-05-30T11:04:37-0300",
     comments = "version: 1.5.3.Final, compiler: javac, environment: Java 17 (Oracle Corporation)"
 )
 @Component

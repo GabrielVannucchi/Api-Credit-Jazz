@@ -88,7 +88,7 @@ public class RestExceptionHandler {
     @ExceptionHandler(RequestedAmountInvalidException.class)
     public ResponseEntity<ProblemDetail> requestRequestAmountInvalidExceptionHandler(RequestedAmountInvalidException e) {
         final ProblemDetail problemDetail = problemDetailBuilder(
-                HttpStatus.BAD_GATEWAY, e.getClass().getSimpleName(),
+                HttpStatus.BAD_REQUEST, e.getClass().getSimpleName(),
                 e.getMessage(), e);
         return ResponseEntity.status(problemDetail.getStatus())
                 .body(problemDetail

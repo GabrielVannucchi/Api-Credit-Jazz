@@ -2,17 +2,14 @@ tech\jazz\apianalisecredito\infrastructure\mapper\AllAnalysisMapperImpl.class
 tech\jazz\apianalisecredito\infrastructure\mapper\AllAnalysisMapper.class
 tech\jazz\apianalisecredito\infrastructure\repository\entity\CreditAnalysisEntity$CreditAnalysisEntityBuilder.class
 tech\jazz\apianalisecredito\presentation\handler\RestExceptionHandler.class
-tech\jazz\apianalisecredito\infrastructure\model\CreditAnalysis$CreditAnalysisBuilder.class
 tech\jazz\apianalisecredito\infrastructure\repository\CreditAnalysisRepository.class
 tech\jazz\apianalisecredito\applicationservice\creditservice\ClientApi.class
 tech\jazz\apianalisecredito\presentation\controller\CreditController.class
 tech\jazz\apianalisecredito\presentation\dto\response\ClientAnalysisResponse.class
-tech\jazz\apianalisecredito\applicationservice\creditservice\CreditAnalysisService.class
 tech\jazz\apianalisecredito\presentation\handler\exceptions\ClientNotFoundException.class
 tech\jazz\apianalisecredito\presentation\handler\exceptions\RequestedAmountInvalidException.class
 tech\jazz\apianalisecredito\presentation\handler\exceptions\ClientIdOutOfFormatException.class
 tech\jazz\apianalisecredito\presentation\handler\exceptions\ClientParamOutOfFormatException.class
-tech\jazz\apianalisecredito\infrastructure\model\CreditAnalysis.class
 tech\jazz\apianalisecredito\presentation\handler\exceptions\CreditAnalysisNotFoundException.class
 tech\jazz\apianalisecredito\presentation\handler\exceptions\UuidOutOfFormatException.class
 tech\jazz\apianalisecredito\infrastructure\mapper\CreditAnalysisMapper.class

@@ -1,4 +1,3 @@
-C:\Users\gabriel.correa\Documents\GabrielVannucchi\Nova pasta\Api-Credit-Jazz\src\main\java\tech\jazz\apianalisecredito\infrastructure\model\CreditAnalysis.java
 C:\Users\gabriel.correa\Documents\GabrielVannucchi\Nova pasta\Api-Credit-Jazz\src\main\java\tech\jazz\apianalisecredito\presentation\dto\response\ClientAnalysisResponse.java
 C:\Users\gabriel.correa\Documents\GabrielVannucchi\Nova pasta\Api-Credit-Jazz\src\main\java\tech\jazz\apianalisecredito\presentation\handler\exceptions\UuidOutOfFormatException.java
 C:\Users\gabriel.correa\Documents\GabrielVannucchi\Nova pasta\Api-Credit-Jazz\src\main\java\tech\jazz\apianalisecredito\presentation\handler\RestExceptionHandler.java
@@ -6,6 +5,7 @@ C:\Users\gabriel.correa\Documents\GabrielVannucchi\Nova pasta\Api-Credit-Jazz\sr
 C:\Users\gabriel.correa\Documents\GabrielVannucchi\Nova pasta\Api-Credit-Jazz\src\main\java\tech\jazz\apianalisecredito\infrastructure\mapper\CreditAnalysisMapper.java
 C:\Users\gabriel.correa\Documents\GabrielVannucchi\Nova pasta\Api-Credit-Jazz\src\main\java\tech\jazz\apianalisecredito\presentation\handler\exceptions\CreditAnalysisNotFoundException.java
 C:\Users\gabriel.correa\Documents\GabrielVannucchi\Nova pasta\Api-Credit-Jazz\src\main\java\tech\jazz\apianalisecredito\presentation\handler\exceptions\MonthlyIncomeInvalidException.java
+C:\Users\gabriel.correa\Documents\GabrielVannucchi\Nova pasta\Api-Credit-Jazz\src\main\java\tech\jazz\apianalisecredito\infrastructure\domain\CreditAnalysis.java
 C:\Users\gabriel.correa\Documents\GabrielVannucchi\Nova pasta\Api-Credit-Jazz\src\main\java\tech\jazz\apianalisecredito\presentation\handler\exceptions\RequestedAmountInvalidException.java
 C:\Users\gabriel.correa\Documents\GabrielVannucchi\Nova pasta\Api-Credit-Jazz\src\main\java\tech\jazz\apianalisecredito\infrastructure\repository\CreditAnalysisRepository.java
 C:\Users\gabriel.correa\Documents\GabrielVannucchi\Nova pasta\Api-Credit-Jazz\src\main\java\tech\jazz\apianalisecredito\presentation\handler\exceptions\ClientApiUnavailableException.java
