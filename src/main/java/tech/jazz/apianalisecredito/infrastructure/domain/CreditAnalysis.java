@@ -48,7 +48,6 @@ public record CreditAnalysis(
             }
             if (requestedAmount.compareTo(monthlyIncome.multiply(BigDecimal.valueOf(0.5))) == 1) {
                 approvedLimit = incomeValue.multiply(BigDecimal.valueOf(HIGH_REQUEST_PERCENT / 100));
-
             } else {
                 approvedLimit = incomeValue.multiply(BigDecimal.valueOf(LOW_REQUEST_PERCENT / 100));
             }

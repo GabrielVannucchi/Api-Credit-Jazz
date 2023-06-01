@@ -61,7 +61,7 @@ public class SearchCreditAnalysisService {
             throw new ClientParamOutOfFormatException(message);
         } else {
             try {
-                final ClientApiRequest client = clientApi.getClientById(param);
+                clientApi.getClientById(param);
             } catch (RetryableException e) {
                 throw new ClientApiUnavailableException(clientApiUnavailableMessage);
             } catch (FeignException e) {
