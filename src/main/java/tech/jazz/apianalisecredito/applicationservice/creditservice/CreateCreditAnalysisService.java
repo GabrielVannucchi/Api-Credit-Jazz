@@ -39,4 +39,6 @@ public class CreateCreditAnalysisService {
         final CreditAnalysisEntity entity = creditAnalysisMapper.from(creditAnalysis);
         return creditAnalysisMapper.from(repository.save(entity));
     }
+
+
 }

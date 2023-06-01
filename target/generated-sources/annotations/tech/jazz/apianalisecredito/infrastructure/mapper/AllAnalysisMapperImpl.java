@@ -10,8 +10,8 @@ import tech.jazz.apianalisecredito.presentation.dto.response.AllAnalysisResponse
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-05-30T11:04:37-0300",
-    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 17 (Oracle Corporation)"
+    date = "2023-06-01T14:46:40-0300",
+    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 17.0.7 (Amazon.com Inc.)"
 )
 @Component
 public class AllAnalysisMapperImpl implements AllAnalysisMapper {
