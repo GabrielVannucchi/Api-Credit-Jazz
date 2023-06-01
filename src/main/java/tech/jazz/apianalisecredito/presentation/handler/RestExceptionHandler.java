@@ -1,6 +1,8 @@
 package tech.jazz.apianalisecredito.presentation.handler;
 
 import java.net.URI;
+
+import io.github.resilience4j.circuitbreaker.CallNotPermittedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
@@ -66,7 +68,7 @@ public class RestExceptionHandler {
     }
 
     @ExceptionHandler(ClientIdOutOfFormatException.class)
-    public ResponseEntity<ProblemDetail> requestClientIdOutOfFormatExceptionHandler(ClientIdOutOfFormatException e) {
+    public ResponseEntity<ProblemDetail> clientIdOutOfFormatExceptionHandler(ClientIdOutOfFormatException e) {
         final ProblemDetail problemDetail = problemDetailBuilder(
                 HttpStatus.BAD_REQUEST, e.getClass().getSimpleName(),
                 e.getMessage(), e);
@@ -76,7 +78,7 @@ public class RestExceptionHandler {
     }
 
     @ExceptionHandler(MonthlyIncomeInvalidException.class)
-    public ResponseEntity<ProblemDetail> requestMonthlyIncomeInvalidExceptionHandler(MonthlyIncomeInvalidException e) {
+    public ResponseEntity<ProblemDetail> monthlyIncomeInvalidExceptionHandler(MonthlyIncomeInvalidException e) {
         final ProblemDetail problemDetail = problemDetailBuilder(
                 HttpStatus.BAD_REQUEST, e.getClass().getSimpleName(),
                 e.getMessage(), e);
@@ -86,7 +88,7 @@ public class RestExceptionHandler {
     }
 
     @ExceptionHandler(RequestedAmountInvalidException.class)
-    public ResponseEntity<ProblemDetail> requestRequestAmountInvalidExceptionHandler(RequestedAmountInvalidException e) {
+    public ResponseEntity<ProblemDetail> requestAmountInvalidExceptionHandler(RequestedAmountInvalidException e) {
         final ProblemDetail problemDetail = problemDetailBuilder(
                 HttpStatus.BAD_REQUEST, e.getClass().getSimpleName(),
                 e.getMessage(), e);
@@ -99,6 +101,16 @@ public class RestExceptionHandler {
     public ResponseEntity<ProblemDetail> creditAnalysisNotFoundExceptionHandler(CreditAnalysisNotFoundException e) {
         final ProblemDetail problemDetail = problemDetailBuilder(
                 HttpStatus.NOT_FOUND, e.getClass().getSimpleName(),
+                e.getMessage(), e);
+        return ResponseEntity.status(problemDetail.getStatus())
+                .body(problemDetail
+                );
+    }
+
+    @ExceptionHandler(CallNotPermittedException.class)
+    public ResponseEntity<ProblemDetail> callNotPermittedExceptionHandler(CallNotPermittedException e) {
+        final ProblemDetail problemDetail = problemDetailBuilder(
+                HttpStatus.SERVICE_UNAVAILABLE, e.getClass().getSimpleName(),
                 e.getMessage(), e);
         return ResponseEntity.status(problemDetail.getStatus())
                 .body(problemDetail

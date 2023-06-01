@@ -1,3 +1,10 @@
+:01-06-2023
+@toDo
+configurar o docker
+configurar corretamente resilience4j
+
+@changelog:
+
 :30-05-2023
 @toDo
 configurar o docker
@@ -5,7 +12,7 @@ configurar o docker
 @changelog:
 regras de negócio transferidas para a domain
 services de criação e consulta separadas, bem como suas classes de teste
-    
+
 :25-05-2023
 @toDo
 configurar o docker
