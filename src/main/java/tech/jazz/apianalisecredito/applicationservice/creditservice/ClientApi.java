@@ -10,6 +10,7 @@ public interface ClientApi {
     @GetMapping("{id}")
     ClientApiRequest getClientById(@PathVariable String id);
 
+   // Este recurso esta incorreto no clients, cpf é um atributo de filtro, o correto é utilizar query parameters
     @GetMapping("cpf/{cpf}")
     ClientApiRequest getClientByCpf(@PathVariable String cpf);
 }
