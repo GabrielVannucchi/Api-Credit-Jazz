@@ -11,7 +11,7 @@ public record AllAnalysisResponse(
         BigDecimal requestedAmount,
         BigDecimal withdraw,
         Float annualInterest,
-        String clientId,
+        UUID clientId,
         LocalDateTime date
 ){
 }

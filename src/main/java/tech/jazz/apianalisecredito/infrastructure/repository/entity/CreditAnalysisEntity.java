@@ -23,7 +23,7 @@ public class CreditAnalysisEntity {
     BigDecimal requestedAmount;
     BigDecimal withdraw;
     Float annualInterest;
-    String clientId;
+    UUID clientId;
     @Column(name = "localDate")
     LocalDateTime date;
     @CreationTimestamp
@@ -38,7 +38,7 @@ public class CreditAnalysisEntity {
     @Builder
     public CreditAnalysisEntity(
             Boolean approved, BigDecimal approvedLimit, BigDecimal requestedAmount, BigDecimal withdraw,
-            Float annualInterest, String clientId, LocalDateTime date) {
+            Float annualInterest, UUID clientId, LocalDateTime date) {
         this.id = UUID.randomUUID();
         this.approved = approved;
         this.approvedLimit = approvedLimit;
@@ -76,7 +76,7 @@ public class CreditAnalysisEntity {
         return annualInterest;
     }
 
-    public String getClientId() {
+    public UUID getClientId() {
         return clientId;
     }
 

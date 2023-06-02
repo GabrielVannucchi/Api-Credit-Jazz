@@ -2,7 +2,6 @@ package tech.jazz.apianalisecredito.applicationservice.creditservice;
 
 import feign.FeignException;
 import feign.RetryableException;
-import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import tech.jazz.apianalisecredito.infrastructure.domain.CreditAnalysis;
@@ -34,7 +33,7 @@ public class CreateCreditAnalysisService {
         }
 
         final CreditAnalysis creditAnalysis = CreditAnalysis.newCreditAnalysis(
-                request.monthlyIncome(), request.requestedAmount(), UUID.fromString(request.clientId()));
+                request.monthlyIncome(), request.requestedAmount(), request.clientId());
 
         final CreditAnalysisEntity entity = creditAnalysisMapper.from(creditAnalysis);
         return creditAnalysisMapper.from(repository.save(entity));

@@ -7,13 +7,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import tech.jazz.apianalisecredito.presentation.handler.exceptions.ClientApiUnavailableException;
-import tech.jazz.apianalisecredito.presentation.handler.exceptions.ClientIdOutOfFormatException;
 import tech.jazz.apianalisecredito.presentation.handler.exceptions.ClientNotFoundException;
-import tech.jazz.apianalisecredito.presentation.handler.exceptions.ClientParamOutOfFormatException;
 import tech.jazz.apianalisecredito.presentation.handler.exceptions.CreditAnalysisNotFoundException;
 import tech.jazz.apianalisecredito.presentation.handler.exceptions.MonthlyIncomeInvalidException;
 import tech.jazz.apianalisecredito.presentation.handler.exceptions.RequestedAmountInvalidException;
-import tech.jazz.apianalisecredito.presentation.handler.exceptions.UuidOutOfFormatException;
 
 @RestControllerAdvice
 public class RestExceptionHandler {
@@ -39,36 +36,6 @@ public class RestExceptionHandler {
     public ResponseEntity<ProblemDetail> clientApiUnavailableExceptionHandler(ClientApiUnavailableException e) {
         final ProblemDetail problemDetail = problemDetailBuilder(
                 HttpStatus.SERVICE_UNAVAILABLE, e.getClass().getSimpleName(),
-                e.getMessage(), e);
-        return ResponseEntity.status(problemDetail.getStatus())
-                .body(problemDetail
-                );
-    }
-
-    @ExceptionHandler(ClientParamOutOfFormatException.class)
-    public ResponseEntity<ProblemDetail> clientParamOutOfFormatExceptionHandler(ClientParamOutOfFormatException e) {
-        final ProblemDetail problemDetail = problemDetailBuilder(
-                HttpStatus.BAD_REQUEST, e.getClass().getSimpleName(),
-                e.getMessage(), e);
-        return ResponseEntity.status(problemDetail.getStatus())
-                .body(problemDetail
-                );
-    }
-
-    @ExceptionHandler(UuidOutOfFormatException.class)
-    public ResponseEntity<ProblemDetail> uuidOutOfFormatExceptionHandler(UuidOutOfFormatException e) {
-        final ProblemDetail problemDetail = problemDetailBuilder(
-                HttpStatus.BAD_REQUEST, e.getClass().getSimpleName(),
-                e.getMessage(), e);
-        return ResponseEntity.status(problemDetail.getStatus())
-                .body(problemDetail
-                );
-    }
-
-    @ExceptionHandler(ClientIdOutOfFormatException.class)
-    public ResponseEntity<ProblemDetail> clientIdOutOfFormatExceptionHandler(ClientIdOutOfFormatException e) {
-        final ProblemDetail problemDetail = problemDetailBuilder(
-                HttpStatus.BAD_REQUEST, e.getClass().getSimpleName(),
                 e.getMessage(), e);
         return ResponseEntity.status(problemDetail.getStatus())
                 .body(problemDetail
