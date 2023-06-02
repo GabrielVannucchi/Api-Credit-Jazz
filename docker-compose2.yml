@@ -1,0 +1,29 @@
+services:
+  postgres:
+    image: postgres
+    container_name: postgrescredit
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: senha123
+    ports:
+      - "5432:5432"
+    networks:
+      - api-credit
+  app:
+    build: .
+    container_name: app-container
+    ports:
+      - 9001:9001
+    networks:
+      - api-credit
+    depends_on:
+      - postgres
+    environment:
+      POSTGRES_URL: jdbc:postgresql://postgres:5432/postgres
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: senha123
+networks:
+  api-credit:
+    external: true
+volumes:
+  postgres-data:

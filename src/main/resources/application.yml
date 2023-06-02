@@ -12,18 +12,15 @@ spring:
     username: admin
     password: senha123
     driver-class-name: org.postgresql.Driver
-    hikari:
-      minimum-idle: 0
-      maximum-pool-size: 15
-      connection-timeout: 3000
-      idle-timeout: 300000
-      max-lifetime: 600000
-      initialization-fail-timeout: -1
-      validation-timeout: 1000
   jpa:
     generate-ddl: false
     show-sql: true
     database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+#resilience4j.circuitbreaker:
+#  instances:
+#    getClientCB:
+#      minimumNumberOfCalls: 4
+#      slidingWindowSize: 8
 
 #  spring.cloud.openfeign.client.config.default.connectTimeout=5000
 #  spring.cloud.openfeign.client.config.default.readTimeout=5000

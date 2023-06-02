@@ -4,14 +4,13 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.UUID;
 import lombok.Builder;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Immutable;
 import org.hibernate.annotations.UpdateTimestamp;
-
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Entity
 @Immutable
@@ -23,7 +22,7 @@ public class CreditAnalysisEntity {
     BigDecimal approvedLimit;
     BigDecimal requestedAmount;
     BigDecimal withdraw;
-    Integer annualInterest;
+    Float annualInterest;
     String clientId;
     @Column(name = "localDate")
     LocalDateTime date;
@@ -37,7 +36,9 @@ public class CreditAnalysisEntity {
 
 
     @Builder
-    public CreditAnalysisEntity(Boolean approved, BigDecimal approvedLimit, BigDecimal requestedAmount, BigDecimal withdraw, Integer annualInterest, String clientId, LocalDateTime date) {
+    public CreditAnalysisEntity(
+            Boolean approved, BigDecimal approvedLimit, BigDecimal requestedAmount, BigDecimal withdraw,
+            Float annualInterest, String clientId, LocalDateTime date) {
         this.id = UUID.randomUUID();
         this.approved = approved;
         this.approvedLimit = approvedLimit;
@@ -71,7 +72,7 @@ public class CreditAnalysisEntity {
         return withdraw;
     }
 
-    public Integer getAnnualInterest() {
+    public Float getAnnualInterest() {
         return annualInterest;
     }
 

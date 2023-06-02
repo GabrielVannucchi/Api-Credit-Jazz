@@ -1,3 +1,52 @@
+:01-06-2023
+@toDo
+configurar o docker
+configurar corretamente resilience4j
+
+@changelog:
+
+:30-05-2023
+@toDo
+configurar o docker
+
+@changelog:
+regras de negócio transferidas para a domain
+services de criação e consulta separadas, bem como suas classes de teste
+
+:25-05-2023
+@toDo
+configurar o docker
+
+@changelog:
+alterado tratamento de excessão com a clientApi
+
+:24-05-2023
+@toDo
+configurar o docker
+
+@changelog:
+adicionado checkstyle e jacoco.
+fixes apontaados pelo checkstyle
+adicionado novos testes não mapeados anteriormente
+
+:23-05-2023
+@toDo
+configurar o docker
+adicionar o jacoco
+
+@changelog:
+escala dos valores validada para entrada de uma nova analise de crédito
+
+:22-05-2023
+@toDo
+validar para receber apenas duas casas decimais ou ignorar da terceira para cima
+adicionar o jacoco
+
+@changelog:
+criados testes unitarios para a classe Service e a dto Request
+alterado extensão do arquivo changelog.txt para changelog.md
+annualInteres altearada de Integer para Float
+
 :19-05-2023
 @toDo
 validar para receber apenas duas casas decimais ou ignorar da terceira para cima

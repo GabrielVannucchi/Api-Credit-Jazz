@@ -8,7 +8,7 @@
 
     <property name="severity" value="error"/>
 
-    <property name="fileExtensions" value="java, properties, xml, yml"/>,
+    <property name="fileExtensions" value="java, properties, xml, yml"/>
     <!-- See https://checkstyle.org/config_filefilters.html -->
     <module name="BeforeExecutionExclusionFileFilter">
         <property name="fileNamePattern" value="module\-info\.java$"/>
@@ -203,8 +203,7 @@
                     LT, MINUS, MOD, NOT_EQUAL, PLUS, QUESTION, SL, SR, STAR, METHOD_REF "/>
         </module>
         <module name="AnnotationLocation">
-            <property name="id" value="Annotati
-            onLocationMostCases"/>
+            <property name="id" value="AnnotationLocationMostCases"/>
             <property name="tokens"
                       value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, CTOR_DEF"/>
         </module>
@@ -238,13 +237,7 @@
             <property name="exceptionVariableName" value="expected"/>
         </module>
         <module name="CommentsIndentation"/>
-        <module name="MagicNumber">
-            <property name="ignoreNumbers" value="0, 0.5, 1"/>
-            <property name="ignoreFieldDeclaration" value="true"/>
-            <property name="ignoreAnnotation" value="true"/>
-            <property name="constantWaiverParentToken"
-                      value="TYPECAST, METHOD_CALL, EXPR, ARRAY_INIT, UNARY_MINUS, UNARY_PLUS, ELIST, STAR, ASSIGN, PLUS, MINUS, DIV, LITERAL_NEW, DOT"/>
-        </module>
+
         <module name="ConstantName"/>
         <module name="CyclomaticComplexity">
             <property name="max" value="10"/>
@@ -282,6 +275,7 @@
         <module name="UnusedImports"/>
 
     </module>
+
 
     <!-- Allow turning checks off in the code using @SuppressWarnings annotation -->
     <!-- See http://checkstyle.sourceforge.net/config_filters.html#SuppressWarningsFilter -->
