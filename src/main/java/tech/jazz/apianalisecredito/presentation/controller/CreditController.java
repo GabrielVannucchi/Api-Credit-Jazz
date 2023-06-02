@@ -22,6 +22,7 @@ import tech.jazz.apianalisecredito.presentation.dto.response.ClientAnalysisRespo
 public class CreditController {
     private final CreditAnalysisService service;
 
+    // @Valid não é necessário
     @PostMapping("analysis")
     @ResponseStatus(value = HttpStatus.CREATED)
     public ClientAnalysisResponse creditAnalysis(@RequestBody @Valid CreditAnalysisRequest creditRequest) {
@@ -33,11 +34,15 @@ public class CreditController {
         return service.listAllCreditAnalysis();
     }
 
+    // A consulta por cpf ou id de client são filtros utilizando query paramenters,
+    // aqui esta utilizando path variable, este endpoint e o metodo em serviço precisa ser restruturado
+    // Tb é incorreto receber um parementro que tem dois significados
     @GetMapping("analysis/client/{param}")
     public List<ClientAnalysisResponse> listAnalysisByClient(@PathVariable String param) {
         return service.listAnalysisByClient(param);
     }
 
+    // utilizar o tipo de dado correto, uuid
     @GetMapping("analysis/{id}")
     public ClientAnalysisResponse findAnalysis(@PathVariable String id) {
         return service.findAnalysisById(id);

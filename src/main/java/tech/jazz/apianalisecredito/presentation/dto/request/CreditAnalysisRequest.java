@@ -7,6 +7,7 @@ import tech.jazz.apianalisecredito.presentation.handler.exceptions.MonthlyIncome
 import tech.jazz.apianalisecredito.presentation.handler.exceptions.RequestedAmountInvalidException;
 
 public record CreditAnalysisRequest(
+        // type uuid
         String clientId,
         BigDecimal monthlyIncome,
         BigDecimal requestedAmount
@@ -15,6 +16,7 @@ public record CreditAnalysisRequest(
     public CreditAnalysisRequest(String clientId,
                                  BigDecimal monthlyIncome,
                                  BigDecimal requestedAmount) {
+        // O id esperando é um uuid, utilizando o tipo correto não é necessário esta validação
         final int scale = 2;
         if (!clientId.matches("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$")) {
             throw new ClientIdOutOfFormatException("Id out of pattern. Insert correct UUID of pattern XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX");

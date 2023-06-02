@@ -1,6 +1,6 @@
 package tech.jazz.apianalisecredito.applicationservice.dto;
 
 public record ClientApiRequest(
-        String id
+        String id // utilizar o tipo correto
 ) {
 }

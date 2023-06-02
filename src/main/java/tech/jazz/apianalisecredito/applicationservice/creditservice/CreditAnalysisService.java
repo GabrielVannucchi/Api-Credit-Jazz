@@ -35,6 +35,7 @@ public class CreditAnalysisService {
     private final CreditAnalysisMapper creditAnalysisMapper;
     private final AllAnalysisMapper allAnalysisMapper;
     private final ClientApi clientApi;
+    // O padrão de nome das constantes estão fora do padrão da linguagem, Upper case EXAMPLE_CONSTANTS
     private final String uuidRegex = "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$";
     private final String cpfregex = "(\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}|\\d{11})";
     private final BigDecimal maxIncome = BigDecimal.valueOf(50000.00);
@@ -64,6 +65,8 @@ public class CreditAnalysisService {
         //end api client
         //regras de negocio
 
+        // Dica, coloque as condiçoes em métodos com nome claro, facilita a leitura do codigo
+        // exemplo: isAmountRequestGreaterThanMonthlyIncome
         if (request.requestedAmount().compareTo(request.monthlyIncome()) > 0) {
             approved = false;
         } else {
@@ -98,6 +101,7 @@ public class CreditAnalysisService {
     }
 
     public List<AllAnalysisResponse> listAllCreditAnalysis() {
+        // uma alternativa aqui é utiliza stream, mas desta forma tb esta ok
         final List<CreditAnalysisEntity> listEntity = repository.findAll();
         final List<AllAnalysisResponse> listResponse = new ArrayList<>();
         for (CreditAnalysisEntity entity :
@@ -124,6 +128,7 @@ public class CreditAnalysisService {
             throw new ClientParamOutOfFormatException(message);
         } else {
             try {
+                // este atributo não esta sendo utilizado
                 final ClientApiRequest client = clientApi.getClientById(param);
             } catch (RetryableException e) {
                 throw new ClientApiUnavailableException(clientApiUnavailableMessage);
