@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="349e196f-2f48-44e6-8216-8235e90ae9bf" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/changelog.md" beforeDir="false" afterPath="$PROJECT_DIR$/changelog.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/applicationservice/creditservice/ClientApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/applicationservice/creditservice/ClientApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/applicationservice/creditservice/CreateCreditAnalysisService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/applicationservice/creditservice/CreateCreditAnalysisService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/presentation/handler/RestExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tech/jazz/apianalisecredito/presentation/handler/RestExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tech/jazz/apianalisecredito/applicationservice/creditservice/ClientApi.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tech/jazz/apianalisecredito/applicationservice/creditservice/ClientApi.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

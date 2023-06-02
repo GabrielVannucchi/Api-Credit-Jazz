@@ -16,11 +16,11 @@ spring:
     generate-ddl: false
     show-sql: true
     database-platform: org.hibernate.dialect.PostgreSQL9Dialect
-resilience4j.circuitbreaker:
-  instances:
-    getClientCB:
-      minimumNumberOfCalls: 4
-      slidingWindowSize: 8
+#resilience4j.circuitbreaker:
+#  instances:
+#    getClientCB:
+#      minimumNumberOfCalls: 4
+#      slidingWindowSize: 8
 
 #  spring.cloud.openfeign.client.config.default.connectTimeout=5000
 #  spring.cloud.openfeign.client.config.default.readTimeout=5000

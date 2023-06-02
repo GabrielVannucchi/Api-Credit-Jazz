@@ -1,8 +1,6 @@
 package tech.jazz.apianalisecredito.presentation.handler;
 
 import java.net.URI;
-
-import io.github.resilience4j.circuitbreaker.CallNotPermittedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
@@ -106,7 +104,7 @@ public class RestExceptionHandler {
                 .body(problemDetail
                 );
     }
-
+    /*
     @ExceptionHandler(CallNotPermittedException.class)
     public ResponseEntity<ProblemDetail> callNotPermittedExceptionHandler(CallNotPermittedException e) {
         final ProblemDetail problemDetail = problemDetailBuilder(
@@ -116,4 +114,5 @@ public class RestExceptionHandler {
                 .body(problemDetail
                 );
     }
+    */
 }
