@@ -21,6 +21,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.Spy;
+import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 import tech.jazz.apianalisecredito.applicationservice.dto.ClientApiRequest;
 import tech.jazz.apianalisecredito.infrastructure.mapper.AllAnalysisMapper;

@@ -36,6 +36,11 @@ import tech.jazz.apianalisecredito.presentation.dto.request.CreditAnalysisReques
 import tech.jazz.apianalisecredito.presentation.dto.response.ClientAnalysisResponse;
 import tech.jazz.apianalisecredito.presentation.handler.exceptions.ClientApiUnavailableException;
 import tech.jazz.apianalisecredito.presentation.handler.exceptions.ClientNotFoundException;
+import tech.jazz.apianalisecredito.presentation.handler.exceptions.*;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.UUID;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
