@@ -149,6 +149,12 @@
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.8.10</version>
+				<configuration>
+					<excludes>
+						<exclude>tech/jazz/apianalisecredito/presentation/**</exclude>
+						<exclude>tech/jazz/apianalisecredito/*</exclude>
+					</excludes>
+				</configuration>
 				<executions>
 					<execution>
 						<goals>

@@ -1,7 +1,7 @@
 package tech.jazz.apianalisecredito.presentation.controller;
 
-import jakarta.validation.Valid;
 import java.util.List;
+import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import tech.jazz.apianalisecredito.applicationservice.creditservice.CreateCreditAnalysisService;
@@ -26,7 +27,7 @@ public class CreditController {
 
     @PostMapping("analysis")
     @ResponseStatus(value = HttpStatus.CREATED)
-    public ClientAnalysisResponse creditAnalysis(@RequestBody @Valid CreditAnalysisRequest creditRequest) {
+    public ClientAnalysisResponse creditAnalysis(@RequestBody CreditAnalysisRequest creditRequest) {
         return createService.createAnalysis(creditRequest);
     }
 
@@ -35,13 +36,14 @@ public class CreditController {
         return searchService.listAllCreditAnalysis();
     }
 
-    @GetMapping("analysis/client/{param}")
-    public List<ClientAnalysisResponse> listAnalysisByClient(@PathVariable String param) {
-        return searchService.listAnalysisByClient(param);
+    @GetMapping("analysis/client")
+    public List<ClientAnalysisResponse> listAnalysisByClient(@RequestParam(required = false) UUID id,
+                                                             @RequestParam(required = false) String cpf) {
+        return searchService.listAnalysisByClient(id, cpf);
     }
 
     @GetMapping("analysis/{id}")
-    public ClientAnalysisResponse findAnalysis(@PathVariable String id) {
+    public ClientAnalysisResponse findAnalysis(@PathVariable UUID id) {
         return searchService.findAnalysisById(id);
     }
 }

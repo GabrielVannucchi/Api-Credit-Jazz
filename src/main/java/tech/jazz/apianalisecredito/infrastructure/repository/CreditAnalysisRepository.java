@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import tech.jazz.apianalisecredito.infrastructure.repository.entity.CreditAnalysisEntity;
 
 public interface CreditAnalysisRepository extends JpaRepository<CreditAnalysisEntity, UUID> {
-    List<CreditAnalysisEntity> findByClientId(String clientId);
+    List<CreditAnalysisEntity> findByClientId(UUID clientId);
 
     Optional<CreditAnalysisEntity> findFirstById(UUID id);
 
