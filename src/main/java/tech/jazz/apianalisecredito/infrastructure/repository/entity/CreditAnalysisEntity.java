@@ -33,8 +33,6 @@ public class CreditAnalysisEntity {
     @Column(name = "updatedAt")
     LocalDateTime updatedAt;
 
-
-
     @Builder
     public CreditAnalysisEntity(
             Boolean approved, BigDecimal approvedLimit, BigDecimal requestedAmount, BigDecimal withdraw,

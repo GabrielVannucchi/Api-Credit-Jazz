@@ -16,7 +16,7 @@ public record CreditAnalysis(
         LocalDateTime date
 ) {
     static final BigDecimal MAX_INCOME = BigDecimal.valueOf(50000.00);
-    static float ANNUAL_INTEREST = 15.0f;
+    static final float ANNUAL_INTEREST = 15.0f;
     static final float HIGH_REQUEST_PERCENT = 15.0f;
     static final float LOW_REQUEST_PERCENT = 30.0f;
     static final float WITHDRAW_PERCENT = 10.0f;

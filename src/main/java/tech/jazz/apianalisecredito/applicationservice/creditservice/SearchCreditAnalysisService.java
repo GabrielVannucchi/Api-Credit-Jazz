@@ -29,8 +29,8 @@ public class SearchCreditAnalysisService {
     private final ClientApi clientApi;
     private static final String UUID_REGEX = "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$";
     private static final String CPF_REGEX = "(\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}|\\d{11})";
-    private final String clientNotFoundMessage = "Client not found in ClientApi";
-    private final String clientApiUnavailableMessage = "Client API unavailable";
+    private static final String clientNotFoundMessage = "Client not found in ClientApi";
+    private static final String clientApiUnavailableMessage = "Client API unavailable";
 
     public List<AllAnalysisResponse> listAllCreditAnalysis() {
         final List<CreditAnalysisEntity> listEntity = repository.findAll();
