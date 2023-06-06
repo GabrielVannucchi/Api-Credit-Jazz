@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 import lombok.Builder;
+import lombok.Generated;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Immutable;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -47,6 +48,7 @@ public class CreditAnalysisEntity {
         this.date = date;
     }
 
+    @Generated
     public CreditAnalysisEntity() {
     }
 
@@ -82,10 +84,12 @@ public class CreditAnalysisEntity {
         return date;
     }
 
+    @Generated
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
+    @Generated
     public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }

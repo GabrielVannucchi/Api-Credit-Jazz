@@ -152,7 +152,7 @@
 				<configuration>
 					<excludes>
 						<exclude>tech/jazz/apianalisecredito/presentation/**</exclude>
-						<exclude>tech/jazz/apianalisecredito/*</exclude>
+						<exclude>tech/jazz/apianalisecredito/ApiAnaliseCreditoApplication.java</exclude>
 					</excludes>
 				</configuration>
 				<executions>
