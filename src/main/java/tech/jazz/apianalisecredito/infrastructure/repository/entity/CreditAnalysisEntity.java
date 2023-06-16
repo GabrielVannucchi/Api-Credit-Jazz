@@ -8,7 +8,8 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 import lombok.Builder;
-import lombok.Generated;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Immutable;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -16,6 +17,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 @Entity
 @Immutable
 @Table(name = "CREDIT_ANALYSIS")
+@NoArgsConstructor
+@Getter
 public class CreditAnalysisEntity {
     @Id
     UUID id;
@@ -46,51 +49,5 @@ public class CreditAnalysisEntity {
         this.annualInterest = annualInterest;
         this.clientId = clientId;
         this.date = date;
-    }
-
-    @Generated
-    public CreditAnalysisEntity() {
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public Boolean getApproved() {
-        return approved;
-    }
-
-    public BigDecimal getApprovedLimit() {
-        return approvedLimit;
-    }
-
-    public BigDecimal getRequestedAmount() {
-        return requestedAmount;
-    }
-
-    public BigDecimal getWithdraw() {
-        return withdraw;
-    }
-
-    public Float getAnnualInterest() {
-        return annualInterest;
-    }
-
-    public UUID getClientId() {
-        return clientId;
-    }
-
-    public LocalDateTime getDate() {
-        return date;
-    }
-
-    @Generated
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    @Generated
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
     }
 }

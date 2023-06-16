@@ -67,7 +67,7 @@ class CreateCreditAnalysisServiceTest {
 
     @Test
     void should_create_analysis(){
-        Mockito.when(clientApi.getClientById(clientIdCaptor.capture())).thenReturn(new ClientApiRequest("690cfa4d-2228-4343-85db-82e96e122da5"));
+        Mockito.when(clientApi.getClientId(clientIdCaptor.capture())).thenReturn(new ClientApiRequest("690cfa4d-2228-4343-85db-82e96e122da5"));
         whenSaveConfiguration();
         CreditAnalysisRequest request = CreditAnalysisRequest.builder()
                 .clientId(UUID.randomUUID())
@@ -82,7 +82,7 @@ class CreateCreditAnalysisServiceTest {
     }
     @Test
     void should_approve_analysis(){
-        Mockito.when(clientApi.getClientById(clientIdCaptor.capture())).thenReturn(new ClientApiRequest("690cfa4d-2228-4343-85db-82e96e122da5"));
+        Mockito.when(clientApi.getClientId(clientIdCaptor.capture())).thenReturn(new ClientApiRequest("690cfa4d-2228-4343-85db-82e96e122da5"));
         whenSaveConfiguration();
         CreditAnalysisRequest request = CreditAnalysisRequest.builder()
                 .clientId(UUID.randomUUID())
@@ -98,7 +98,7 @@ class CreateCreditAnalysisServiceTest {
     }
     @Test
     void should_approve_analysis_with_30percent_of_monthlyIncome(){
-        Mockito.when(clientApi.getClientById(clientIdCaptor.capture())).thenReturn(new ClientApiRequest("690cfa4d-2228-4343-85db-82e96e122da5"));
+        Mockito.when(clientApi.getClientId(clientIdCaptor.capture())).thenReturn(new ClientApiRequest("690cfa4d-2228-4343-85db-82e96e122da5"));
         whenSaveConfiguration();
         CreditAnalysisRequest request = CreditAnalysisRequest.builder()
                 .clientId(UUID.randomUUID())
@@ -116,7 +116,7 @@ class CreateCreditAnalysisServiceTest {
     }
     @Test
     void should_approve_analysis_with_15percent_of_monthlyIncome(){
-        Mockito.when(clientApi.getClientById(clientIdCaptor.capture())).thenReturn(new ClientApiRequest("690cfa4d-2228-4343-85db-82e96e122da5"));
+        Mockito.when(clientApi.getClientId(clientIdCaptor.capture())).thenReturn(new ClientApiRequest("690cfa4d-2228-4343-85db-82e96e122da5"));
         whenSaveConfiguration();
         CreditAnalysisRequest request = CreditAnalysisRequest.builder()
                 .clientId(UUID.randomUUID())
@@ -134,7 +134,7 @@ class CreateCreditAnalysisServiceTest {
     }
     @Test
     void should_approve_analysis_with_rounding_monthlyIncome_to_50000(){
-        Mockito.when(clientApi.getClientById(clientIdCaptor.capture())).thenReturn(new ClientApiRequest("690cfa4d-2228-4343-85db-82e96e122da5"));
+        Mockito.when(clientApi.getClientId(clientIdCaptor.capture())).thenReturn(new ClientApiRequest("690cfa4d-2228-4343-85db-82e96e122da5"));
         whenSaveConfiguration();
         CreditAnalysisRequest request = CreditAnalysisRequest.builder()
                 .clientId(UUID.randomUUID())
@@ -152,7 +152,7 @@ class CreateCreditAnalysisServiceTest {
     }
     @Test
     void should_create_unapproved_analysis(){
-        Mockito.when(clientApi.getClientById(clientIdCaptor.capture())).thenReturn(new ClientApiRequest("690cfa4d-2228-4343-85db-82e96e122da5"));
+        Mockito.when(clientApi.getClientId(clientIdCaptor.capture())).thenReturn(new ClientApiRequest("690cfa4d-2228-4343-85db-82e96e122da5"));
         whenSaveConfiguration();
         CreditAnalysisRequest request = CreditAnalysisRequest.builder()
                 .clientId(UUID.randomUUID())
@@ -171,12 +171,12 @@ class CreateCreditAnalysisServiceTest {
     }
     @Test
     void should_throw_ClientNotFoundException_when_id_not_found_while_creating(){
-        Mockito.when(clientApi.getClientById(clientIdCaptor.capture())).thenThrow(FeignException.class);
+        Mockito.when(clientApi.getClientId(clientIdCaptor.capture())).thenThrow(FeignException.class);
         assertThrows(ClientNotFoundException.class,() -> service.createAnalysis(genericCreditAnalysisRequestFactory()));
     }
     @Test
     void should_throw_ClientApiUnavailableException_when_RetryableException_is_throw_by_ClientApi(){
-        Mockito.when(clientApi.getClientById(clientIdCaptor.capture())).thenThrow(RetryableException.class);
+        Mockito.when(clientApi.getClientId(clientIdCaptor.capture())).thenThrow(RetryableException.class);
         assertThrows(ClientApiUnavailableException.class, () -> service.createAnalysis(genericCreditAnalysisRequestFactory()));
     }
 

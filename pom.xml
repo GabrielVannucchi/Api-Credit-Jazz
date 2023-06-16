@@ -25,14 +25,17 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -43,6 +46,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-undertow</artifactId>
@@ -53,30 +57,35 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>io.github.resilience4j</groupId>
 			<artifactId>resilience4j-spring-boot2</artifactId>
 			<version>2.0.2</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
 			<version>4.0.1</version>
-
 		</dependency>
+
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
@@ -87,10 +96,12 @@
 			<artifactId>mapstruct</artifactId>
 			<version>${mapstruct.version}</version>
 		</dependency>
+
 	</dependencies>
 
 	<build>
 		<plugins>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-checkstyle-plugin</artifactId>
@@ -111,6 +122,7 @@
 					</execution>
 				</executions>
 			</plugin>
+
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -123,6 +135,7 @@
 					</excludes>
 				</configuration>
 			</plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -145,6 +158,7 @@
 					</compilerArgs>
 				</configuration>
 			</plugin>
+
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
@@ -152,7 +166,10 @@
 				<configuration>
 					<excludes>
 						<exclude>tech/jazz/apianalisecredito/presentation/**</exclude>
-						<exclude>tech/jazz/apianalisecredito/ApiAnaliseCreditoApplication.java</exclude>
+						<exclude>tech/jazz/apianalisecredito/ApiAnaliseCreditoApplication.class</exclude>
+						<exclude>tech/jazz/apianalisecredito/infrastructure/mapper/**</exclude>
+						<exclude>tech/jazz/apianalisecredito/infrastructure/repository/**</exclude>
+						<exclude>tech/jazz/apianalisecredito/applicationservice/dto/**</exclude>
 					</excludes>
 				</configuration>
 				<executions>
@@ -170,6 +187,7 @@
 					</execution>
 				</executions>
 			</plugin>
+
 		</plugins>
 	</build>
 </project>

@@ -25,7 +25,7 @@ public class CreateCreditAnalysisService {
         final String clientNotFoundMessage = "Client not found in ClientApi";
         final String clientApiUnavailableMessage = "Client API unavailable";
         try {
-            clientApi.getClientById(request.clientId());
+            clientApi.getClientId(request.clientId());
         } catch (RetryableException e) {
             throw new ClientApiUnavailableException(clientApiUnavailableMessage);
         } catch (FeignException e) {

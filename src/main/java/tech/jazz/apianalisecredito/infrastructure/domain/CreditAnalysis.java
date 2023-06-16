@@ -55,7 +55,6 @@ public record CreditAnalysis(
             withdraw = approvedLimit.multiply(BigDecimal.valueOf(WITHDRAW_PERCENT / 100)).setScale(2, RoundingMode.DOWN);
         }
 
-
         final CreditAnalysis creditAnalysis = CreditAnalysis.builder()
                 .approved(approved)
                 .approvedLimit(approvedLimit)

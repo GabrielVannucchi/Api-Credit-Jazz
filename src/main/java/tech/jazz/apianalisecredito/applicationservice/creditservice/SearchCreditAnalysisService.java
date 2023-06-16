@@ -27,7 +27,6 @@ public class SearchCreditAnalysisService {
     private final CreditAnalysisMapper creditAnalysisMapper;
     private final AllAnalysisMapper allAnalysisMapper;
     private final ClientApi clientApi;
-    private static final String UUID_REGEX = "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$";
     private static final String CPF_REGEX = "(\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}|\\d{11})";
     private final String clientNotFoundMessage = "Client not found in ClientApi";
     private final String clientApiUnavailableMessage = "Client API unavailable";
@@ -46,7 +45,7 @@ public class SearchCreditAnalysisService {
     public List<ClientAnalysisResponse> listAnalysisByClient(UUID id, String cpf) {
         if (id != null) {
             try {
-                clientApi.getClientById(id);
+                clientApi.getClientId(id);
             } catch (RetryableException e) {
                 throw new ClientApiUnavailableException(clientApiUnavailableMessage);
             } catch (FeignException e) {
@@ -56,7 +55,7 @@ public class SearchCreditAnalysisService {
         if (cpf != null) {
             if (Pattern.matches(CPF_REGEX, cpf)) {
                 try {
-                    id = UUID.fromString(clientApi.getClientByCpf(cpf).id());
+                    id = UUID.fromString(clientApi.getClientCpf(cpf).get(0).id());
                 } catch (RetryableException e) {
                     throw new ClientApiUnavailableException(clientApiUnavailableMessage);
                 } catch (FeignException e) {
@@ -83,4 +82,5 @@ public class SearchCreditAnalysisService {
 
         return creditAnalysisMapper.from(entity);
     }
+
 }

@@ -63,13 +63,13 @@ class SearchCreditAnalysisServiceTest {
 
     @Test
     void should_throw_CliendNotFoundException_when_id_not_found_while_searching(){
-        Mockito.when(clientApi.getClientById(clientIdCaptor.capture())).thenThrow(FeignException.class);
+        Mockito.when(clientApi.getClientId(clientIdCaptor.capture())).thenThrow(FeignException.class);
 
         assertThrows(ClientNotFoundException.class,() -> service.listAnalysisByClient(UUID.randomUUID(), null));
     }
     @Test
     void should_throw_CliendNotFoundException_when_cpf_not_found_while_searching(){
-        Mockito.when(clientApi.getClientByCpf(clientCpfCaptor.capture())).thenThrow(FeignException.class);
+        Mockito.when(clientApi.getClientCpf(clientCpfCaptor.capture())).thenThrow(FeignException.class);
         assertThrows(ClientNotFoundException.class,() -> service.listAnalysisByClient(null,"012.345.678-90"));
         assertThrows(ClientNotFoundException.class,() -> service.listAnalysisByClient(null,"45896853882"));
     }
@@ -81,26 +81,26 @@ class SearchCreditAnalysisServiceTest {
     }
     @Test
     void should_return_client_by_CPF(){
-        Mockito.when(clientApi.getClientByCpf(clientCpfCaptor.capture())).thenReturn(new ClientApiRequest("12341234-1234-1234-1234-123412341234"));
+        Mockito.when(clientApi.getClientCpf(clientCpfCaptor.capture())).thenReturn(List.of(new ClientApiRequest("12341234-1234-1234-1234-123412341234")));
         Mockito.when(repository.findByClientId(UUID.fromString("12341234-1234-1234-1234-123412341234"))).thenReturn(List.of(entityFactory(),entityFactory()));
         List<ClientAnalysisResponse> responses = service.listAnalysisByClient(null,"01234567890");
         assertEquals(2, responses.size());
     }
     @Test
     void should_return_client_by_UUID(){
-        Mockito.when(clientApi.getClientById(clientIdCaptor.capture())).thenReturn(new ClientApiRequest("12341234-1234-1234-1234-123412341234"));
+        Mockito.when(clientApi.getClientId(clientIdCaptor.capture())).thenReturn(new ClientApiRequest("12341234-1234-1234-1234-123412341234"));
         Mockito.when(repository.findByClientId(UUID.fromString("12341234-1234-1234-1234-123412341234"))).thenReturn(List.of(entityFactory(),entityFactory()));
         List<ClientAnalysisResponse> responses = service.listAnalysisByClient(UUID.fromString("12341234-1234-1234-1234-123412341234"), null);
         assertEquals(2, responses.size());
     }
     @Test
     void should_throw_ClientNotFoundException_when_client_CPF_dont_exists_in_clientApi(){
-        Mockito.when(clientApi.getClientByCpf(clientCpfCaptor.capture())).thenThrow(ClientNotFoundException.class);
+        Mockito.when(clientApi.getClientCpf(clientCpfCaptor.capture())).thenThrow(ClientNotFoundException.class);
         assertThrows(ClientNotFoundException.class, () -> service.listAnalysisByClient(null, "01234567890"));
     }
     @Test
     void should_throw_ClientNotFoundException_when_client_UUID_dont_exists_in_clientApi(){
-        Mockito.when(clientApi.getClientById(clientIdCaptor.capture())).thenThrow(ClientNotFoundException.class);
+        Mockito.when(clientApi.getClientId(clientIdCaptor.capture())).thenThrow(ClientNotFoundException.class);
         assertThrows(ClientNotFoundException.class, () -> service.listAnalysisByClient(UUID.randomUUID(), null));
     }
     @Test
@@ -117,12 +117,12 @@ class SearchCreditAnalysisServiceTest {
     }
     @Test
     void should_throw_ClientApiUnavailableException_when_ClientApi_getById_return_a_RetryableException() {
-        Mockito.when(clientApi.getClientById(clientIdCaptor.capture())).thenThrow(RetryableException.class);
+        Mockito.when(clientApi.getClientId(clientIdCaptor.capture())).thenThrow(RetryableException.class);
         assertThrows(ClientApiUnavailableException.class, () -> service.listAnalysisByClient(UUID.randomUUID(), null));
     }
     @Test
     void should_throw_ClientApiUnavailableException_when_ClientApi_getByCpf_return_a_RetryableException() {
-        Mockito.when(clientApi.getClientByCpf(clientCpfCaptor.capture())).thenThrow(RetryableException.class);
+        Mockito.when(clientApi.getClientCpf(clientCpfCaptor.capture())).thenThrow(RetryableException.class);
         assertThrows(ClientApiUnavailableException.class, () -> service.listAnalysisByClient(null, "01234567890"));
         assertThrows(ClientApiUnavailableException.class, () -> service.listAnalysisByClient(null, "012.345.678-90"));
     }
