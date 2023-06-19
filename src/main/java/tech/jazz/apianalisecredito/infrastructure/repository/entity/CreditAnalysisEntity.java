@@ -8,6 +8,8 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Immutable;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -15,6 +17,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 @Entity
 @Immutable
 @Table(name = "CREDIT_ANALYSIS")
+@NoArgsConstructor
+@Getter
 public class CreditAnalysisEntity {
     @Id
     UUID id;
@@ -23,7 +27,7 @@ public class CreditAnalysisEntity {
     BigDecimal requestedAmount;
     BigDecimal withdraw;
     Float annualInterest;
-    String clientId;
+    UUID clientId;
     @Column(name = "localDate")
     LocalDateTime date;
     @CreationTimestamp
@@ -33,12 +37,10 @@ public class CreditAnalysisEntity {
     @Column(name = "updatedAt")
     LocalDateTime updatedAt;
 
-
-
     @Builder
     public CreditAnalysisEntity(
             Boolean approved, BigDecimal approvedLimit, BigDecimal requestedAmount, BigDecimal withdraw,
-            Float annualInterest, String clientId, LocalDateTime date) {
+            Float annualInterest, UUID clientId, LocalDateTime date) {
         this.id = UUID.randomUUID();
         this.approved = approved;
         this.approvedLimit = approvedLimit;
@@ -47,48 +49,5 @@ public class CreditAnalysisEntity {
         this.annualInterest = annualInterest;
         this.clientId = clientId;
         this.date = date;
-    }
-
-    public CreditAnalysisEntity() {
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public Boolean getApproved() {
-        return approved;
-    }
-
-    public BigDecimal getApprovedLimit() {
-        return approvedLimit;
-    }
-
-    public BigDecimal getRequestedAmount() {
-        return requestedAmount;
-    }
-
-    public BigDecimal getWithdraw() {
-        return withdraw;
-    }
-
-    public Float getAnnualInterest() {
-        return annualInterest;
-    }
-
-    public String getClientId() {
-        return clientId;
-    }
-
-    public LocalDateTime getDate() {
-        return date;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
     }
 }

@@ -1,12 +1,26 @@
 package tech.jazz.apianalisecredito.applicationservice.creditservice;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import feign.FeignException;
 import feign.RetryableException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.UUID;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.*;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.Spy;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.stubbing.Answer;
@@ -19,17 +33,13 @@ import tech.jazz.apianalisecredito.infrastructure.repository.CreditAnalysisRepos
 import tech.jazz.apianalisecredito.infrastructure.repository.entity.CreditAnalysisEntity;
 import tech.jazz.apianalisecredito.presentation.controller.CreditController;
 import tech.jazz.apianalisecredito.presentation.dto.request.CreditAnalysisRequest;
-import tech.jazz.apianalisecredito.presentation.dto.response.AllAnalysisResponse;
 import tech.jazz.apianalisecredito.presentation.dto.response.ClientAnalysisResponse;
+import tech.jazz.apianalisecredito.presentation.handler.exceptions.ClientApiUnavailableException;
+import tech.jazz.apianalisecredito.presentation.handler.exceptions.ClientNotFoundException;
 import tech.jazz.apianalisecredito.presentation.handler.exceptions.*;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -49,7 +59,7 @@ class CreateCreditAnalysisServiceTest {
     private CreateCreditAnalysisService service;
 
     @Captor
-    private ArgumentCaptor<String> clientIdCaptor;
+    private ArgumentCaptor<UUID> clientIdCaptor;
     @Captor
     private ArgumentCaptor<String> clientCpfCaptor;
     @Captor
@@ -57,10 +67,10 @@ class CreateCreditAnalysisServiceTest {
 
     @Test
     void should_create_analysis(){
-        Mockito.when(clientApi.getClientById(clientIdCaptor.capture())).thenReturn(new ClientApiRequest("690cfa4d-2228-4343-85db-82e96e122da5"));
+        Mockito.when(clientApi.getClientId(clientIdCaptor.capture())).thenReturn(new ClientApiRequest("690cfa4d-2228-4343-85db-82e96e122da5"));
         whenSaveConfiguration();
         CreditAnalysisRequest request = CreditAnalysisRequest.builder()
-                .clientId("690cfa4d-2228-4343-85db-82e96e122da5")
+                .clientId(UUID.randomUUID())
                 .monthlyIncome(new BigDecimal(20000))
                 .requestedAmount(new BigDecimal(5000))
                 .build();
@@ -72,10 +82,10 @@ class CreateCreditAnalysisServiceTest {
     }
     @Test
     void should_approve_analysis(){
-        Mockito.when(clientApi.getClientById(clientIdCaptor.capture())).thenReturn(new ClientApiRequest("690cfa4d-2228-4343-85db-82e96e122da5"));
+        Mockito.when(clientApi.getClientId(clientIdCaptor.capture())).thenReturn(new ClientApiRequest("690cfa4d-2228-4343-85db-82e96e122da5"));
         whenSaveConfiguration();
         CreditAnalysisRequest request = CreditAnalysisRequest.builder()
-                .clientId("690cfa4d-2228-4343-85db-82e96e122da5")
+                .clientId(UUID.randomUUID())
                 .monthlyIncome(new BigDecimal(20000))
                 .requestedAmount(new BigDecimal(5000))
                 .build();
@@ -88,10 +98,10 @@ class CreateCreditAnalysisServiceTest {
     }
     @Test
     void should_approve_analysis_with_30percent_of_monthlyIncome(){
-        Mockito.when(clientApi.getClientById(clientIdCaptor.capture())).thenReturn(new ClientApiRequest("690cfa4d-2228-4343-85db-82e96e122da5"));
+        Mockito.when(clientApi.getClientId(clientIdCaptor.capture())).thenReturn(new ClientApiRequest("690cfa4d-2228-4343-85db-82e96e122da5"));
         whenSaveConfiguration();
         CreditAnalysisRequest request = CreditAnalysisRequest.builder()
-                .clientId("690cfa4d-2228-4343-85db-82e96e122da5")
+                .clientId(UUID.randomUUID())
                 .monthlyIncome(new BigDecimal(20000))
                 .requestedAmount(new BigDecimal(5000))
                 .build();
@@ -106,10 +116,10 @@ class CreateCreditAnalysisServiceTest {
     }
     @Test
     void should_approve_analysis_with_15percent_of_monthlyIncome(){
-        Mockito.when(clientApi.getClientById(clientIdCaptor.capture())).thenReturn(new ClientApiRequest("690cfa4d-2228-4343-85db-82e96e122da5"));
+        Mockito.when(clientApi.getClientId(clientIdCaptor.capture())).thenReturn(new ClientApiRequest("690cfa4d-2228-4343-85db-82e96e122da5"));
         whenSaveConfiguration();
         CreditAnalysisRequest request = CreditAnalysisRequest.builder()
-                .clientId("690cfa4d-2228-4343-85db-82e96e122da5")
+                .clientId(UUID.randomUUID())
                 .monthlyIncome(new BigDecimal(20000))
                 .requestedAmount(new BigDecimal(11000))
                 .build();
@@ -124,10 +134,10 @@ class CreateCreditAnalysisServiceTest {
     }
     @Test
     void should_approve_analysis_with_rounding_monthlyIncome_to_50000(){
-        Mockito.when(clientApi.getClientById(clientIdCaptor.capture())).thenReturn(new ClientApiRequest("690cfa4d-2228-4343-85db-82e96e122da5"));
+        Mockito.when(clientApi.getClientId(clientIdCaptor.capture())).thenReturn(new ClientApiRequest("690cfa4d-2228-4343-85db-82e96e122da5"));
         whenSaveConfiguration();
         CreditAnalysisRequest request = CreditAnalysisRequest.builder()
-                .clientId("690cfa4d-2228-4343-85db-82e96e122da5")
+                .clientId(UUID.randomUUID())
                 .monthlyIncome(new BigDecimal(2000000))
                 .requestedAmount(new BigDecimal(5000))
                 .build();
@@ -142,10 +152,10 @@ class CreateCreditAnalysisServiceTest {
     }
     @Test
     void should_create_unapproved_analysis(){
-        Mockito.when(clientApi.getClientById(clientIdCaptor.capture())).thenReturn(new ClientApiRequest("690cfa4d-2228-4343-85db-82e96e122da5"));
+        Mockito.when(clientApi.getClientId(clientIdCaptor.capture())).thenReturn(new ClientApiRequest("690cfa4d-2228-4343-85db-82e96e122da5"));
         whenSaveConfiguration();
         CreditAnalysisRequest request = CreditAnalysisRequest.builder()
-                .clientId("690cfa4d-2228-4343-85db-82e96e122da5")
+                .clientId(UUID.randomUUID())
                 .monthlyIncome(new BigDecimal(20000))
                 .requestedAmount(new BigDecimal(50000))
                 .build();
@@ -160,18 +170,23 @@ class CreateCreditAnalysisServiceTest {
 
     }
     @Test
-    void should_throw_CliendNotFoundException_when_id_not_found_while_creating(){
-        Mockito.when(clientApi.getClientById(clientIdCaptor.capture())).thenThrow(FeignException.class);
-        CreditAnalysisRequest request = CreditAnalysisRequest.builder()
-                .clientId("690cfa4d-2228-4343-85db-82e96e122da9")
+    void should_throw_ClientNotFoundException_when_id_not_found_while_creating(){
+        Mockito.when(clientApi.getClientId(clientIdCaptor.capture())).thenThrow(FeignException.class);
+        assertThrows(ClientNotFoundException.class,() -> service.createAnalysis(genericCreditAnalysisRequestFactory()));
+    }
+    @Test
+    void should_throw_ClientApiUnavailableException_when_RetryableException_is_throw_by_ClientApi(){
+        Mockito.when(clientApi.getClientId(clientIdCaptor.capture())).thenThrow(RetryableException.class);
+        assertThrows(ClientApiUnavailableException.class, () -> service.createAnalysis(genericCreditAnalysisRequestFactory()));
+    }
+
+    private CreditAnalysisRequest genericCreditAnalysisRequestFactory(){
+        return CreditAnalysisRequest.builder()
+                .clientId(UUID.randomUUID())
                 .monthlyIncome(new BigDecimal(20000))
                 .requestedAmount(new BigDecimal(50000))
                 .build();
-
-        assertThrows(ClientNotFoundException.class,() -> service.createAnalysis(request));
     }
-
-
     private void whenSaveConfiguration(){
         Mockito.when(repository.save(Mockito.any(CreditAnalysisEntity.class)))
                 .thenAnswer(new Answer<CreditAnalysisEntity>() {

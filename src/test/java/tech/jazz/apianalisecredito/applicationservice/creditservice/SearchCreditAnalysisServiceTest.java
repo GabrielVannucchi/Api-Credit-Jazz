@@ -1,14 +1,28 @@
 package tech.jazz.apianalisecredito.applicationservice.creditservice;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import feign.FeignException;
+import feign.RetryableException;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.Spy;
 import org.mockito.*;
-import org.mockito.invocation.InvocationOnMock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.mockito.stubbing.Answer;
 import tech.jazz.apianalisecredito.applicationservice.dto.ClientApiRequest;
 import tech.jazz.apianalisecredito.infrastructure.mapper.AllAnalysisMapper;
 import tech.jazz.apianalisecredito.infrastructure.mapper.AllAnalysisMapperImpl;
@@ -19,15 +33,10 @@ import tech.jazz.apianalisecredito.infrastructure.repository.entity.CreditAnalys
 import tech.jazz.apianalisecredito.presentation.controller.CreditController;
 import tech.jazz.apianalisecredito.presentation.dto.response.AllAnalysisResponse;
 import tech.jazz.apianalisecredito.presentation.dto.response.ClientAnalysisResponse;
-import tech.jazz.apianalisecredito.presentation.handler.exceptions.*;
-
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
-
-import static org.junit.jupiter.api.Assertions.*;
+import tech.jazz.apianalisecredito.presentation.handler.exceptions.ClientApiUnavailableException;
+import tech.jazz.apianalisecredito.presentation.handler.exceptions.ClientNotFoundException;
+import tech.jazz.apianalisecredito.presentation.handler.exceptions.CpfOutOfFormatException;
+import tech.jazz.apianalisecredito.presentation.handler.exceptions.CreditAnalysisNotFoundException;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
@@ -46,7 +55,7 @@ class SearchCreditAnalysisServiceTest {
     private SearchCreditAnalysisService service;
 
     @Captor
-    private ArgumentCaptor<String> clientIdCaptor;
+    private ArgumentCaptor<UUID> clientIdCaptor;
     @Captor
     private ArgumentCaptor<String> clientCpfCaptor;
     @Captor
@@ -54,15 +63,15 @@ class SearchCreditAnalysisServiceTest {
 
     @Test
     void should_throw_CliendNotFoundException_when_id_not_found_while_searching(){
-        Mockito.when(clientApi.getClientById(clientIdCaptor.capture())).thenThrow(FeignException.class);
+        Mockito.when(clientApi.getClientId(clientIdCaptor.capture())).thenThrow(FeignException.class);
 
-        assertThrows(ClientNotFoundException.class,() -> service.listAnalysisByClient("690cfa4d-2228-4343-85db-82e96e122da9"));
+        assertThrows(ClientNotFoundException.class,() -> service.listAnalysisByClient(UUID.randomUUID(), null));
     }
     @Test
     void should_throw_CliendNotFoundException_when_cpf_not_found_while_searching(){
-        Mockito.when(clientApi.getClientByCpf(clientCpfCaptor.capture())).thenThrow(FeignException.class);
-        assertThrows(ClientNotFoundException.class,() -> service.listAnalysisByClient("012.345.678-90"));
-        assertThrows(ClientNotFoundException.class,() -> service.listAnalysisByClient("45896853882"));
+        Mockito.when(clientApi.getClientCpf(clientCpfCaptor.capture())).thenThrow(FeignException.class);
+        assertThrows(ClientNotFoundException.class,() -> service.listAnalysisByClient(null,"012.345.678-90"));
+        assertThrows(ClientNotFoundException.class,() -> service.listAnalysisByClient(null,"45896853882"));
     }
     @Test
     void should_return_3_analysis_in_findAll(){
@@ -72,47 +81,55 @@ class SearchCreditAnalysisServiceTest {
     }
     @Test
     void should_return_client_by_CPF(){
-        Mockito.when(clientApi.getClientByCpf(clientCpfCaptor.capture())).thenReturn(new ClientApiRequest("12341234-1234-1234-1234-123412341234"));
-        Mockito.when(repository.findByClientId("12341234-1234-1234-1234-123412341234")).thenReturn(List.of(entityFactory(),entityFactory()));
-        List<ClientAnalysisResponse> responses = service.listAnalysisByClient("01234567890");
+        Mockito.when(clientApi.getClientCpf(clientCpfCaptor.capture())).thenReturn(List.of(new ClientApiRequest("12341234-1234-1234-1234-123412341234")));
+        Mockito.when(repository.findByClientId(UUID.fromString("12341234-1234-1234-1234-123412341234"))).thenReturn(List.of(entityFactory(),entityFactory()));
+        List<ClientAnalysisResponse> responses = service.listAnalysisByClient(null,"01234567890");
         assertEquals(2, responses.size());
     }
     @Test
     void should_return_client_by_UUID(){
-        Mockito.when(clientApi.getClientById(clientIdCaptor.capture())).thenReturn(new ClientApiRequest("12341234-1234-1234-1234-123412341234"));
-        Mockito.when(repository.findByClientId("12341234-1234-1234-1234-123412341234")).thenReturn(List.of(entityFactory(),entityFactory()));
-        List<ClientAnalysisResponse> responses = service.listAnalysisByClient("12341234-1234-1234-1234-123412341234");
+        Mockito.when(clientApi.getClientId(clientIdCaptor.capture())).thenReturn(new ClientApiRequest("12341234-1234-1234-1234-123412341234"));
+        Mockito.when(repository.findByClientId(UUID.fromString("12341234-1234-1234-1234-123412341234"))).thenReturn(List.of(entityFactory(),entityFactory()));
+        List<ClientAnalysisResponse> responses = service.listAnalysisByClient(UUID.fromString("12341234-1234-1234-1234-123412341234"), null);
         assertEquals(2, responses.size());
     }
     @Test
     void should_throw_ClientNotFoundException_when_client_CPF_dont_exists_in_clientApi(){
-        Mockito.when(clientApi.getClientByCpf(clientCpfCaptor.capture())).thenThrow(ClientNotFoundException.class);
-        assertThrows(ClientNotFoundException.class, () -> service.listAnalysisByClient("01234567890"));
-    }
-    @Test
-    void should_throw_ClientParamOutOfFormatException_when_client_params_format_is_incorrect(){
-        assertThrows(ClientParamOutOfFormatException.class, () -> service.listAnalysisByClient("1"));
+        Mockito.when(clientApi.getClientCpf(clientCpfCaptor.capture())).thenThrow(ClientNotFoundException.class);
+        assertThrows(ClientNotFoundException.class, () -> service.listAnalysisByClient(null, "01234567890"));
     }
     @Test
     void should_throw_ClientNotFoundException_when_client_UUID_dont_exists_in_clientApi(){
-        Mockito.when(clientApi.getClientById(clientIdCaptor.capture())).thenThrow(ClientNotFoundException.class);
-        assertThrows(ClientNotFoundException.class, () -> service.listAnalysisByClient("12341234-1234-1234-1234-123412341234"));
+        Mockito.when(clientApi.getClientId(clientIdCaptor.capture())).thenThrow(ClientNotFoundException.class);
+        assertThrows(ClientNotFoundException.class, () -> service.listAnalysisByClient(UUID.randomUUID(), null));
     }
     @Test
     void should_return_credit_analysis(){
         Mockito.when(repository.findFirstById(analysisId.capture())).thenReturn(Optional.of(entityFactory()));
-        ClientAnalysisResponse response = service.findAnalysisById("12341234-1234-1234-1234-123412341234");
+        ClientAnalysisResponse response = service.findAnalysisById(UUID.fromString("12341234-1234-1234-1234-123412341234"));
         assertNotNull(response);
         assertNotNull(response.id());
     }
     @Test
-    void should_throw_CreditAnalysisNotFoundException_when_UUID_dont_exists_in_repository(){
+    void should_throw_CreditAnalysisNotFoundException_when_UUID_dont_exists_in_repository() {
         Mockito.when(repository.findFirstById(analysisId.capture())).thenReturn(Optional.empty());
-        assertThrows(CreditAnalysisNotFoundException.class,() -> service.findAnalysisById("12341234-1234-1234-1234-123412341234"));
+        assertThrows(CreditAnalysisNotFoundException.class,() -> service.findAnalysisById(UUID.randomUUID()));
     }
     @Test
-    void should_throw_UuidOutOfFormatException_when_UUID_is_invalid(){
-        assertThrows(UuidOutOfFormatException.class, () -> service.findAnalysisById("12341"));
+    void should_throw_ClientApiUnavailableException_when_ClientApi_getById_return_a_RetryableException() {
+        Mockito.when(clientApi.getClientId(clientIdCaptor.capture())).thenThrow(RetryableException.class);
+        assertThrows(ClientApiUnavailableException.class, () -> service.listAnalysisByClient(UUID.randomUUID(), null));
+    }
+    @Test
+    void should_throw_ClientApiUnavailableException_when_ClientApi_getByCpf_return_a_RetryableException() {
+        Mockito.when(clientApi.getClientCpf(clientCpfCaptor.capture())).thenThrow(RetryableException.class);
+        assertThrows(ClientApiUnavailableException.class, () -> service.listAnalysisByClient(null, "01234567890"));
+        assertThrows(ClientApiUnavailableException.class, () -> service.listAnalysisByClient(null, "012.345.678-90"));
+    }
+
+    @Test
+    void should_throw_CpfOutOfFormatException_when_cpf_is_in_wrong_format(){
+        assertThrows(CpfOutOfFormatException.class, () -> service.listAnalysisByClient(null, "wrong cpf"));
     }
 
     private CreditAnalysisEntity entityFactory(){
@@ -122,32 +139,8 @@ class SearchCreditAnalysisServiceTest {
                 .requestedAmount(new BigDecimal(20))
                 .withdraw(new BigDecimal(20))
                 .annualInterest(15f)
-                .clientId("12341234-1234-1234-1234-123412341234")
+                .clientId(UUID.fromString("12341234-1234-1234-1234-123412341234"))
                 .date(LocalDateTime.of(1997,4,10,4,20))
                 .build();
-    }
-    private void whenSaveConfiguration(){
-        Mockito.when(repository.save(Mockito.any(CreditAnalysisEntity.class)))
-                .thenAnswer(new Answer<CreditAnalysisEntity>() {
-                    public CreditAnalysisEntity answer(InvocationOnMock invocation) throws Throwable{
-                        Object[] arguments = invocation.getArguments();
-
-                        if (arguments != null && arguments.length > 0 && arguments[0] instanceof CreditAnalysisEntity){
-                            CreditAnalysisEntity objEntity = (CreditAnalysisEntity) arguments[0];
-                            objEntity = CreditAnalysisEntity.builder()
-                                    .approved(objEntity.getApproved())
-                                    .approvedLimit(objEntity.getApprovedLimit())
-                                    .requestedAmount(objEntity.getRequestedAmount())
-                                    .withdraw(objEntity.getWithdraw())
-                                    .annualInterest(objEntity.getAnnualInterest())
-                                    .clientId(objEntity.getClientId())
-                                    .date(objEntity.getDate())
-                                    .build();
-                            return objEntity;
-                        }
-                        return  null;
-
-                    }
-                });
     }
 }

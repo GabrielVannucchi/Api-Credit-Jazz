@@ -16,7 +16,7 @@ public record CreditAnalysis(
         LocalDateTime date
 ) {
     static final BigDecimal MAX_INCOME = BigDecimal.valueOf(50000.00);
-    static float ANNUAL_INTEREST = 15.0f;
+    static final float ANNUAL_INTEREST = 15.0f;
     static final float HIGH_REQUEST_PERCENT = 15.0f;
     static final float LOW_REQUEST_PERCENT = 30.0f;
     static final float WITHDRAW_PERCENT = 10.0f;
@@ -39,7 +39,7 @@ public record CreditAnalysis(
         BigDecimal approvedLimit = new BigDecimal(0);
         final boolean approved;
 
-        if (requestedAmount.compareTo(monthlyIncome) > 0) {
+        if (isAmountRequestGreaterThanMonthlyIncome(requestedAmount, monthlyIncome)) {
             approved = false;
         } else {
             approved = true;
@@ -55,7 +55,6 @@ public record CreditAnalysis(
             withdraw = approvedLimit.multiply(BigDecimal.valueOf(WITHDRAW_PERCENT / 100)).setScale(2, RoundingMode.DOWN);
         }
 
-
         final CreditAnalysis creditAnalysis = CreditAnalysis.builder()
                 .approved(approved)
                 .approvedLimit(approvedLimit)
@@ -68,4 +67,12 @@ public record CreditAnalysis(
 
         return creditAnalysis;
     }
+
+    private static boolean isAmountRequestGreaterThanMonthlyIncome(BigDecimal requestedAmount, BigDecimal monthlyIncome) {
+        if (requestedAmount.compareTo(monthlyIncome) > 0) {
+            return true;
+        }
+        return false;
+    }
 }
+

@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS CREDIT_ANALYSIS(
         requested_amount decimal(10,2),
         withdraw decimal(7,2),
         annual_interest decimal(6,3),
-        client_id varchar(36),
+        client_id uuid,
         local_date timestamp,
         created_at timestamp,
         updated_at timestamp,

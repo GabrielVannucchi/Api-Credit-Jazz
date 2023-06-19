@@ -16,6 +16,8 @@ spring:
     generate-ddl: false
     show-sql: true
     database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+
+client-api-path: localhost:8080/clients
 #resilience4j.circuitbreaker:
 #  instances:
 #    getClientCB:
